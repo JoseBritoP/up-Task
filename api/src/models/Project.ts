@@ -13,7 +13,7 @@ const ProjectSchema:Schema = new Schema({
     required:true,
     trim:true
   },
-  descrition:{
+  description:{
     type:String,
     required:true,
     trim:true,
