@@ -1,5 +1,5 @@
 import type { Request,Response } from "express";
-import { createProject,getProject,getProjects, updateProject } from "../controllers/project";
+import { createProject,deleteProject,getProject,getProjects, updateProject } from "../controllers/project";
 
 const GET = async (req:Request,res:Response) => {
   try {
@@ -49,7 +49,12 @@ const PATCH = async (req:Request,res:Response) => {
 
 const DELETE = async (req:Request,res:Response) => {
   const { id } = req.params
-  res.json({DIY: `DELETE project ${id}`})
+  try {
+    const projectDeleted = await deleteProject(id);
+    return res.status(200).json(projectDeleted);
+  } catch (error:any) {
+    return res.status(404).json({error:error.message});
+  }
 }
 
 export class ProjectHandler {

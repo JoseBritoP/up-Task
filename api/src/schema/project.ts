@@ -15,13 +15,13 @@ const description = z.string({
   required_error:'A description is required',
 }).trim().min(3,{message:'The description is to short'}).max(200,{message:'The description is to long'})
 
-const id = z.string({
+export const idSchema = z.string({
   invalid_type_error:'The id must be a string',
   required_error:'The id is required'
-}).regex(/[^0-9]+/,{message:'Invalid ID'});
+}).regex(/[^0-9]+/,{message:'Invalid ID'}).length(24,{message:'The id must have 24 characters'});
 
 export const updateProjectSchema = z.object({
-  id,
+  id:idSchema,
   data:z.object({
     projectName:projectName.optional(),
     clientName:clientName.optional(),
