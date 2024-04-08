@@ -1,6 +1,5 @@
-import mongoose,{ Schema } from "mongoose";
+import mongoose,{ Schema, Types } from "mongoose";
 import { ProjectType } from "../typescript/types/project";
-
 
 const ProjectSchema:Schema = new Schema({
   projectName:{
@@ -17,8 +16,15 @@ const ProjectSchema:Schema = new Schema({
     type:String,
     required:true,
     trim:true,
-  }
-})
+  },
+  tasks:[
+    {
+      type:Types.ObjectId,
+      ref:'Task'
+    }
+  ]
+},{ timestamps:true }
+)
 
 const Project = mongoose.model<ProjectType>('Project',ProjectSchema)
 export default Project
