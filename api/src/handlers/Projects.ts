@@ -14,9 +14,8 @@ const POST = async (req:Request,res:Response) => {
     const newProject = await createProject(data);
     return res.status(201).json(newProject)
   } catch (error:any) {
-    return res.status(400).json({error:error.message})
+    return res.status(400).json({error:JSON.parse(error.message)})
   }
-  res.json({DIY:'POST project'})
 }
 const PUT = async (req:Request,res:Response) => {
   const { id } = req.params
