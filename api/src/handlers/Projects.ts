@@ -1,5 +1,5 @@
 import type { Request,Response } from "express";
-import { createProject,getProjects } from "../controllers/project";
+import { createProject,getProject,getProjects } from "../controllers/project";
 
 const GET = async (req:Request,res:Response) => {
   try {
@@ -9,10 +9,17 @@ const GET = async (req:Request,res:Response) => {
     return res.status(404).json({error:error.message})
   }
 }
+
 const GETBYID = async (req:Request,res:Response) => {
   const { id } = req.params
-  res.json({DIY:`GET project ${id}`})
+  try {
+    const project = await getProject(id);
+    return res.status(200).json(project)
+  } catch (error:any) {
+    return res.status(404).json({error:error.message})
+  }
 }
+
 const POST = async (req:Request,res:Response) => {
   const data = req.body;
   try {

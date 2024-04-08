@@ -8,3 +8,14 @@ export const getProjects = async () => {
 
   return projects
 };
+
+export const getProject = async (id:string) => {
+
+  const project = await Project.findOne({
+    _id:id
+  });
+
+  if(!project) throw new Error(`Project not found ${id}`)
+  
+  return project
+}
