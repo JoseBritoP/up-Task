@@ -1,5 +1,6 @@
 import { Request,Response,NextFunction,ErrorRequestHandler, Router } from "express";
 import { projectRouter } from "./projectRoutes";
+import taskRouter from "./taskRoutes";
 
 const mainRouter = Router();
 
@@ -10,6 +11,7 @@ const mainRouter = Router();
 // Routes
 
 mainRouter.use('/api/project',projectRouter)
+mainRouter.use('/api/project/:id/tasks',taskRouter);
 
 mainRouter.use((req, res, next) => {
   const error:any = new Error(`La ruta ${req.originalUrl} con el método ${req.method} no está implementada`);
