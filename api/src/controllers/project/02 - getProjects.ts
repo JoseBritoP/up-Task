@@ -11,6 +11,8 @@ export const getProjects = async () => {
 
 export const getProject = async (id:string) => {
 
+  if(/^[0-9]+$/.test(id)) throw new Error('Id invalid')
+
   const project = await Project.findOne({
     _id:id
   });
