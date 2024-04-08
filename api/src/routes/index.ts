@@ -1,13 +1,15 @@
 import { Request,Response,NextFunction,ErrorRequestHandler, Router } from "express";
+import { projectRouter } from "./projectRoutes";
 
 const mainRouter = Router();
 
-mainRouter.use('/',(req,res)=>{
-  res.send('Hello')
-})
+// mainRouter.use('/',(req,res)=>{
+//   res.send('Hello')
+// })
 
-// Endpoints
+// Routes
 
+mainRouter.use('/api/project',projectRouter)
 
 mainRouter.use((req, res, next) => {
   const error:any = new Error(`La ruta ${req.originalUrl} con el método ${req.method} no está implementada`);
