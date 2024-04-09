@@ -11,7 +11,7 @@ const mainRouter = Router();
 // Routes
 
 mainRouter.use('/api/project',projectRouter)
-mainRouter.use('/api/project/:id/tasks',taskRouter);
+mainRouter.use('/api/task',taskRouter);
 
 mainRouter.use((req, res, next) => {
   const error:any = new Error(`La ruta ${req.originalUrl} con el método ${req.method} no está implementada`);
