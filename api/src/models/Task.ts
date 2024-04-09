@@ -1,6 +1,13 @@
 import mongoose, { Schema, Types } from "mongoose";
-import { TaskType, taskStatus } from "../typescript/types/task";
+import { TaskType } from "../typescript/types/task";
 
+export const taskStatus = {
+  PENDING :'pending',
+  ON_HOLD :'onHold',
+  IN_PROGRESS:'inProgress',
+  UNDER_REVIEW:'underReview',
+  COMPLETED:'completed'
+} as const
 
 export const TaskSchema:Schema = new Schema({
   name:{
