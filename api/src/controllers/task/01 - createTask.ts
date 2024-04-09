@@ -4,11 +4,9 @@ import { getProject } from "../project";
 
 export const createTask = async (data:unknown) => {
   const result = taskSchema.safeParse(data);
-  if(!result.success) {
-    console.log(result.error)
-    throw new Error(JSON.stringify(result.error))
-  }
-
+  
+  if(!result.success) throw new Error(JSON.stringify(result.error))
+  
   await getProject(result.data.project);
 
   const newTask = new Task(result.data);
