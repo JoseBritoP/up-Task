@@ -1,4 +1,5 @@
 import type { Request,Response } from "express";
+import { createTask } from "../controllers/task";
 
 export const GET = async (req:Request,res:Response) => {
   // try {
@@ -11,27 +12,26 @@ export const GET = async (req:Request,res:Response) => {
 }
 
 export const GETBYID = async (req:Request,res:Response) => {
-  const { id } = req.params
+  const { projectId } = req.params
   // try {
   //   const project = await getProject(id);
   //   return res.status(200).json(project)
   // } catch (error:any) {
   //   return res.status(404).json({error:error.message})
   // }
-  return res.json({DIY:`Get Task ${id}`})
+  return res.json({DIY:`Get Task ${projectId}`})
 
 }
 
 export const POST = async (req:Request,res:Response) => {
   const data = req.body;
-  // try {
-  //   const newProject = await createProject(data);
-  //   return res.status(201).json(newProject)
-  // } catch (error:any) {
-  //   return res.status(400).json({error:JSON.parse(error.message)})
-  // }
-  return res.json({DIY:'Post task'})
-
+  try {
+    const newTask= await createTask(data);
+    return res.status(201).json(newTask)
+  } catch (error:any) {
+    if(error.message.includes('issues')) return res.status(400).json({error:JSON.parse(error.message)});
+    return res.status(404).json({error:error.message});
+  }
 }
 
 export const PUT = async (req:Request,res:Response) => {
