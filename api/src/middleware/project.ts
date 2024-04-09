@@ -43,7 +43,6 @@ export const checkId = (req:Request,res:Response,next:NextFunction) => {
 
     const result = idSchema.safeParse(id);
     if(!result.success) throw new Error(JSON.stringify(result.error));
-    console.log(result.data)
     req.paramsId = result.data
     next();
   } catch (error:any) {
