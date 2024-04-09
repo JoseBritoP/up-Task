@@ -18,7 +18,7 @@ export const deleteTask = async (id:string) => {
     _id:task.project?._id
   })
   if(!project) throw new Error(`Proyect not found`);
-  project.tasks = project.tasks.filter((task)=>task.id !== id)
+  project.tasks = project.tasks.filter((task)=>task !== id)
   await project.save();
 
   const deletedTask = await task.deleteOne();
