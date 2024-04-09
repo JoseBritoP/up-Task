@@ -1,4 +1,5 @@
 import z from 'zod';
+import { idSchema } from './project';
 
 const name = z.string({
   invalid_type_error:'The task name must be a string',
@@ -23,3 +24,12 @@ export const taskSchema = z.object({
   project:projectIdSchema,
   status
 })
+
+export const updateTaskSchema = z.object({
+  id:idSchema,
+  data:z.object({
+    name:name.optional(),
+    description:description.optional(),
+    status:status.optional()
+  })
+});
