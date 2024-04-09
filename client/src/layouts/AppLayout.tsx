@@ -1,4 +1,4 @@
-import { Footer, Header } from "componets/shared"
+import { Footer, Header } from "@/components/shared"
 import { Outlet } from "react-router-dom"
 
 export default function AppLayout() {
