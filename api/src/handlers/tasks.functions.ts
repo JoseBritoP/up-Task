@@ -1,6 +1,5 @@
 import type { Request,Response } from "express";
-import { createTask,getTask,getTasks,getTasksInProject,updateTask } from "../controllers/task";
-import { deleteTask } from "../controllers/task/04 - deleteTask";
+import { createTask,getTask,getTasks,getTasksInProject,updateTask,deleteTask,updateTaskStatus } from "../controllers/task";
 
 // TODO: Middleware here
 
@@ -47,9 +46,14 @@ export const PUT = async (req:Request,res:Response) => {
 }
 
 export const PATCH = async (req:Request,res:Response) => {
-  const { id } = req.params
+  const data = req.taskStatus;
+  try {
+    const task = await updateTaskStatus(data);
+    return res.status(200).json(task)
+  } catch (error:any) {
+    return res.status(400).json({error:error.message})
+  }
   
-  return res.json({DIY:`Patch Task ${id}`})
 }
 
 export const DELETE = async (req:Request,res:Response) => {
