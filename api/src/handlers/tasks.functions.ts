@@ -1,6 +1,8 @@
 import type { Request,Response } from "express";
 import { createTask } from "../controllers/task";
 
+// TODO: Middleware here
+
 export const GET = async (req:Request,res:Response) => {
   // try {
   //   const projects = await getProjects();
