@@ -11,7 +11,7 @@ export const GET = async (req:Request,res:Response) => {
 }
 
 export const GETBYID = async (req:Request,res:Response) => {
-  const { id } = req.params
+  const id = req.paramsId
   try {
     const project = await getProject(id);
     return res.status(200).json(project)
@@ -47,7 +47,7 @@ export const PATCH = async (req:Request,res:Response) => {
 }
 
 export const DELETE = async (req:Request,res:Response) => {
-  const { id } = req.params
+  const id  = req.paramsId
   try {
     const projectDeleted = await deleteProject(id);
     return res.status(200).json(projectDeleted);
