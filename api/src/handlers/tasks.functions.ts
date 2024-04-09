@@ -26,13 +26,12 @@ export const GETBYID = async (req:Request,res:Response) => {
 }
 
 export const POST = async (req:Request,res:Response) => {
-  const data = req.body;
+  const data = req.taskData;
   try {
     const newTask= await createTask(data);
     return res.status(201).json(newTask)
   } catch (error:any) {
-    if(error.message.includes('issues')) return res.status(400).json({error:JSON.parse(error.message)});
-    return res.status(404).json({error:error.message});
+    return res.status(400).json({error:error.message});
   }
 }
 
