@@ -1,5 +1,5 @@
 import type { Request,Response } from "express";
-import { createTask,getTasks,getTasksInProject } from "../controllers/task";
+import { createTask,getTask,getTasks,getTasksInProject } from "../controllers/task";
 
 // TODO: Middleware here
 
@@ -14,14 +14,13 @@ export const GET = async (req:Request,res:Response) => {
 }
 
 export const GETBYID = async (req:Request,res:Response) => {
-  const { projectId } = req.params
-  // try {
-  //   const project = await getProject(id);
-  //   return res.status(200).json(project)
-  // } catch (error:any) {
-  //   return res.status(404).json({error:error.message})
-  // }
-  return res.json({DIY:`Get Task ${projectId}`})
+  const { id } = req.params
+  try {
+    const task = await getTask(id);
+    return res.status(200).json(task)
+  } catch (error:any) {
+    return res.status(404).json({error:error.message})
+  }
 
 }
 

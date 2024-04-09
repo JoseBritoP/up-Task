@@ -17,3 +17,9 @@ export const getTasksInProject = async (projectId:string) => {
   return tasks
 
 }; 
+
+export const getTask = async (id:string) => {
+  const task = await Task.findById(id);
+  if(!task) throw new Error(`Task not found ${id}`);
+  return task
+};

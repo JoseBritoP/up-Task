@@ -9,9 +9,9 @@ import { GetProjectId } from "../middleware/task";
 // Endpoints
 
 taskRouter.get('/',TaskHandler.GET)
-taskRouter.get('/:projectId',GetProjectId,TaskHandler.GET)
-taskRouter.post('/',TaskHandler.POST)
+taskRouter.get('/project/:projectId',GetProjectId,TaskHandler.GET)
 taskRouter.get('/:id',TaskHandler.GETBYID)
+taskRouter.post('/',TaskHandler.POST)
 taskRouter.put('/:id',TaskHandler.PUT)
 taskRouter.patch('/',TaskHandler.PATCH)
 taskRouter.delete('/',TaskHandler.DELETE)
