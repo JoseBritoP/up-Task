@@ -1,0 +1,23 @@
+import type { Request,Response,NextFunction } from "express";
+import { CreateProjectProps } from "../typescript/interfaces/project";
+import { projectSchema } from "../schema/project";
+
+declare global {
+  namespace Express {
+    interface Request {
+      data:CreateProjectProps
+    }
+  }
+}
+
+export const postProjectCheck = (req:Request,res:Response,next:NextFunction) =>{
+  try {
+    const body = req.body;
+    const result = projectSchema.safeParse(body);
+    if(!result.success) throw new Error(JSON.stringify(result.error))
+    req.data = result.data
+    next();
+  } catch (error:any) {
+  return res.status(400).json({error:JSON.parse(error.message)})
+  }
+}

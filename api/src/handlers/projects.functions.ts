@@ -21,7 +21,7 @@ export const GETBYID = async (req:Request,res:Response) => {
 }
 
 export const POST = async (req:Request,res:Response) => {
-  const data = req.body;
+  const data = req.data;
   try {
     const newProject = await createProject(data);
     return res.status(201).json(newProject)
