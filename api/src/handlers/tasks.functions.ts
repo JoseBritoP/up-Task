@@ -1,5 +1,6 @@
 import type { Request,Response } from "express";
 import { createTask,getTask,getTasks,getTasksInProject } from "../controllers/task";
+import { updateTask } from "../controllers/task/03 - updateTask";
 
 // TODO: Middleware here
 
@@ -36,15 +37,13 @@ export const POST = async (req:Request,res:Response) => {
 }
 
 export const PUT = async (req:Request,res:Response) => {
-  const { id } = req.params
-  // const data = req.body
-  // try {
-  //   const projectUpdated = await updateProject(id,data);
-  //   return res.status(200).json(projectUpdated)
-  // } catch (error:any) {
-  //   return res.status(400).json({error:JSON.parse(error.message)})
-  // }
-  return res.json({DIY:`PUT Task ${id}`})
+  const data = req.taskUpdateData;
+  try {
+    const updatedTask = await updateTask(data);
+    return res.status(200).json(updatedTask)
+  } catch (error:any) {
+    return res.status(400).json({error:error.message})
+  }
 
 }
 
