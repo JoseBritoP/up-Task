@@ -4,7 +4,7 @@ import { idSchema } from './project';
 const name = z.string({
   invalid_type_error:'The task name must be a string',
   required_error:'The name of the task is required',}
-).trim().min(3,{message:'The name of task is to short'}).max(30,{message:'The name of task is to long'});
+).trim().min(3,{message:'The name of task is to short'}).max(50,{message:'The name of task is to long'});
 
 const description = z.string({
   invalid_type_error:'The description of the task must be a string',
@@ -21,8 +21,7 @@ const status = z.enum(['pending','onHold','inProgress','underReview','completed'
 export const taskSchema = z.object({
   name,
   description,
-  project:projectIdSchema,
-  status
+  project:projectIdSchema
 })
 
 export const updateTaskSchema = z.object({
