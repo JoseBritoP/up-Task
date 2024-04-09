@@ -14,3 +14,10 @@ export interface UpdateTaskProps {
     status?:TaskStatus
   }
 }
+
+export interface PatchTaskProps {
+  id:string,
+  data:{
+    status:TaskStatus
+  }
+}

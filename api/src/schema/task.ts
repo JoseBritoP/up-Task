@@ -32,3 +32,10 @@ export const updateTaskSchema = z.object({
     status:status.optional()
   })
 });
+
+export const patchTaskStatusSchema = z.object({
+  id:idSchema,
+  data:z.object({
+    status
+  })
+});
