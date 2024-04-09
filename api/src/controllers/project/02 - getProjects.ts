@@ -15,7 +15,11 @@ export const getProject = async (id:string) => {
 
   const project = await Project.findOne({
     _id:id
-  });
+  })
+  .populate({
+    path:'tasks',
+    select:"_id name description status"
+  })
 
   if(!project) throw new Error(`Project not found ${id}`)
   

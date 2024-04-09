@@ -10,7 +10,8 @@ export const getTasks = async () => {
 export const getTasksInProject = async (projectId:string) => {
   const tasks = await Task.find({
     project:projectId
-  });
+  })
+  .populate('project')
   if(!tasks.length) throw new Error(`No tasks`);
   
   return tasks
