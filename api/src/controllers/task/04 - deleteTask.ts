@@ -12,13 +12,14 @@ export const deleteTask = async (id:string) => {
 
 
   if(!task) throw new Error(`Task not found`);
-  // const proyect = task.proyect
 
   const project = await Project.findOne({
     _id:task.project?._id
   })
   if(!project) throw new Error(`Proyect not found`);
-  project.tasks = project.tasks.filter((task)=>task !== id)
+  project.tasks = project.tasks.filter((task)=>{
+    return task.toString() !== id
+  })
   await project.save();
 
   const deletedTask = await task.deleteOne();
