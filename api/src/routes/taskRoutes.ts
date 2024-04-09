@@ -4,7 +4,7 @@ import { TaskHandler } from "../handlers/tasks";
 const taskRouter = Router();
 // Middleware
 
-import { GetProjectId, putTaskCheck } from "../middleware/task";
+import { GetProjectId, postTaskCheck, putTaskCheck } from "../middleware/task";
 import { checkId } from "../middleware/task";
 
 // Endpoints
@@ -12,7 +12,7 @@ import { checkId } from "../middleware/task";
 taskRouter.get('/',TaskHandler.GET)
 taskRouter.get('/project/:projectId',GetProjectId,TaskHandler.GET)
 taskRouter.get('/:id',checkId,TaskHandler.GETBYID)
-taskRouter.post('/',TaskHandler.POST)
+taskRouter.post('/',postTaskCheck,TaskHandler.POST)
 taskRouter.put('/:id',putTaskCheck,TaskHandler.PUT)
 taskRouter.patch('/',TaskHandler.PATCH)
 taskRouter.delete('/',TaskHandler.DELETE)
