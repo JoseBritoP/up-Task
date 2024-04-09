@@ -3,7 +3,7 @@ import { TaskStatus } from "../types/task"
 export interface CreateTaskProps {
   name:string
   description:string
-  projectId:string
+  project:string
 }
 
 export interface UpdateTaskProps {
