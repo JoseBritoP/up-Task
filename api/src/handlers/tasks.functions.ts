@@ -1,6 +1,6 @@
 import type { Request,Response } from "express";
-import { createTask,getTask,getTasks,getTasksInProject } from "../controllers/task";
-import { updateTask } from "../controllers/task/03 - updateTask";
+import { createTask,getTask,getTasks,getTasksInProject,updateTask } from "../controllers/task";
+import { deleteTask } from "../controllers/task/04 - deleteTask";
 
 // TODO: Middleware here
 
@@ -53,14 +53,13 @@ export const PATCH = async (req:Request,res:Response) => {
 }
 
 export const DELETE = async (req:Request,res:Response) => {
-  const { id } = req.params
-  // try {
-  //   const projectDeleted = await deleteProject(id);
-  //   return res.status(200).json(projectDeleted);
-  // } catch (error:any) {
-  //   return res.status(404).json({error:error.message});
-  // }
-  return res.json({DIY:`DELETE Task ${id}`})
+  const id = req.paramsId
+  try {
+    const taskDeleted = await deleteTask(id);
+    return res.status(200).json(taskDeleted);
+  } catch (error:any) {
+    return res.status(404).json({error:error.message});
+  }
 
 }
 

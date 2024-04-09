@@ -14,7 +14,7 @@ taskRouter.get('/project/:projectId',GetProjectId,TaskHandler.GET)
 taskRouter.get('/:id',checkId,TaskHandler.GETBYID)
 taskRouter.post('/',postTaskCheck,TaskHandler.POST)
 taskRouter.put('/:id',putTaskCheck,TaskHandler.PUT)
-taskRouter.patch('/',TaskHandler.PATCH)
-taskRouter.delete('/',TaskHandler.DELETE)
+taskRouter.patch('/:id',TaskHandler.PATCH)
+taskRouter.delete('/:id',checkId,TaskHandler.DELETE)
 
 export default taskRouter
