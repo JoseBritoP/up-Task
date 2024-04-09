@@ -31,10 +31,9 @@ export const POST = async (req:Request,res:Response) => {
 }
 
 export const PUT = async (req:Request,res:Response) => {
-  const { id } = req.params
-  const data = req.body
+  const data = req.updateData;
   try {
-    const projectUpdated = await updateProject(id,data);
+    const projectUpdated = await updateProject(data);
     return res.status(200).json(projectUpdated)
   } catch (error:any) {
     return res.status(400).json({error:JSON.parse(error.message)})
