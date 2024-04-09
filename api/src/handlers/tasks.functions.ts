@@ -14,7 +14,7 @@ export const GET = async (req:Request,res:Response) => {
 }
 
 export const GETBYID = async (req:Request,res:Response) => {
-  const { id } = req.params
+  const id = req.paramsId
   try {
     const task = await getTask(id);
     return res.status(200).json(task)
