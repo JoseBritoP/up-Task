@@ -1,4 +1,5 @@
 import z from 'zod'
+import { taskSchema } from './TaskSchema';
 
 const projectName = z.string({
   invalid_type_error:'The project name must be a string',
@@ -30,6 +31,14 @@ export const projectSchema = z.object({
 
 export const projectsSchema = z.array(projectSchema)
 
-export type Project = z.infer<typeof projectSchema>;
+export const projectWithTaskSchema = z.object({
+  _id:idSchema,
+  projectName,
+  clientName,
+  description,
+  tasks:z.array(taskSchema) || []
+});
 
+export type Project = z.infer<typeof projectSchema>;
+export type ProjectDetail = z.infer<typeof projectWithTaskSchema>
 export type ProjectFormData = Pick<Project,'clientName' | 'projectName'| 'description'>
