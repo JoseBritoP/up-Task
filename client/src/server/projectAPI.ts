@@ -5,9 +5,7 @@ import { ProjectFormData } from "typescript/types/Project";
 
 export async function createProject(formData:ProjectFormData){
   try {
-    const { data } = await api.post('/project',{
-      projectName:formData.projectName,
-    });
+    const { data } = await api.post('/project',formData);
     return data
   } catch (error:any) {
     // console.log('Server error')
