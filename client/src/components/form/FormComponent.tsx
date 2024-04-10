@@ -3,7 +3,7 @@ import useFormComponent from '@/hooks/useFormComponent'
 
 export default function FormComponent() {
 
-  const { register, handleSubmit, errors, handleForm } = useFormComponent();
+  const { register, handleSubmit, errors, handleForm } = useFormComponent();  
 
   return (
     <form className='mt-10 bg-white dark:bg-slate-800 shadow-lg p-10 rounded-lg' onSubmit={handleSubmit(handleForm)} noValidate>
