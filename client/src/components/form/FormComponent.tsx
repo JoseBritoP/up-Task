@@ -1,8 +1,11 @@
 import { useForm } from 'react-hook-form'
 import ProjectForm from './ProjectForm'
 import { ProjectFormData } from 'typescript/types/Project'
+import { createProject } from '../../server/projectAPI'
+import { useNavigate } from 'react-router-dom'
 
 export default function FormComponent() {
+  const navigate = useNavigate();
   const initialValues:ProjectFormData = {
     projectName:'',
     clientName:'',
@@ -10,9 +13,11 @@ export default function FormComponent() {
   }
   const { register, handleSubmit, formState:{errors} } = useForm({defaultValues:initialValues})
 
-  const handleForm = (data:ProjectFormData) => {
-    console.log(data)
+  const handleForm = async(data:ProjectFormData) => {
+    await createProject(data);
+    navigate('/')
   }
+
   return (
     <form className='mt-10 bg-white dark:bg-slate-800 shadow-lg p-10 rounded-lg' onSubmit={handleSubmit(handleForm)} noValidate>
       <ProjectForm register ={register} errors={errors}/>

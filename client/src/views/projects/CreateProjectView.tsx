@@ -1,3 +1,4 @@
+import FormComponent from "@/components/form/FormComponent";
 import { Link } from "react-router-dom";
 
 export default function CreateProjectView() {
@@ -10,6 +11,7 @@ export default function CreateProjectView() {
         dark:bg-purple-800 dark:hover:bg-purple-700
         px-10 py-3 text-white text-xl font-semibold cursor-pointer transition-colors rounded-md">Back to Projects</Link>
       </nav>
+      <FormComponent/>
     </>
   )
 }

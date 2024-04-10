@@ -8,7 +8,7 @@ export default function ProjectForm({register,errors}:ProjectFormProps) {
         <label htmlFor="projectName" className="text-sm uppercase font-bold">Name of project</label>
         <input
             id="projectName"
-            className="w-full p-3  border border-gray-200"
+            className="w-full p-3  border border-gray-200 rounded-md dark:placeholder:text-gray-700 dark:text-gray-800"
             type="text"
             placeholder="Name of project"
             {...register("projectName", {
@@ -25,7 +25,7 @@ export default function ProjectForm({register,errors}:ProjectFormProps) {
         <label htmlFor="clientName" className="text-sm uppercase font-bold">Client name</label>
         <input
             id="clientName"
-            className="w-full p-3  border border-gray-200"
+            className="w-full p-3  border border-gray-200 rounded-md dark:placeholder:text-gray-700 dark:text-gray-800"
             type="text"
             placeholder="Client name"
             {...register("clientName", {
@@ -42,7 +42,7 @@ export default function ProjectForm({register,errors}:ProjectFormProps) {
         <label htmlFor="description" className="text-sm uppercase font-bold">Description </label>
         <textarea
             id="description"
-            className="w-full p-3  border border-gray-200"
+            className="w-full p-3  border border-gray-200 rounded-md dark:placeholder:text-gray-700 dark:text-gray-800"
             placeholder="Description..."
             {...register("description", {
                 required: "A description of the project is required"
