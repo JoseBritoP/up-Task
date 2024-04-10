@@ -3,6 +3,7 @@ import ProjectForm from './ProjectForm'
 import { ProjectFormData } from 'typescript/types/Project'
 import { createProject } from '../../server/projectAPI'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 export default function FormComponent() {
   const navigate = useNavigate();
@@ -13,8 +14,9 @@ export default function FormComponent() {
   }
   const { register, handleSubmit, formState:{errors} } = useForm({defaultValues:initialValues})
 
-  const handleForm = async(data:ProjectFormData) => {
-    await createProject(data);
+  const handleForm = async(formData:ProjectFormData) => {
+    const data = await createProject(formData);
+    toast.success(`${data.message}`)
     navigate('/')
   }
 
