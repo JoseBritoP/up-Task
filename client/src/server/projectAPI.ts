@@ -51,3 +51,20 @@ export async function getProject(projectId:string) {
     throw new Error(`Error fetching projects...`)
   }
 }
+
+type ProjectAPIType = {
+  formData:ProjectFormData,
+  projectId:string
+}
+export async function editProject({formData,projectId}:ProjectAPIType){
+  try {
+    const { data } = await api.put(`/project/${projectId}`,formData);
+    return data
+  } catch (error:any) {
+    // console.log('Server error')
+    if(isAxiosError(error) && error.response){
+      const errorMessage = error.response.data.error.issues.map((issue:{message:'string'})=>issue.message)
+      throw new Error(errorMessage);
+    }
+  }
+}
