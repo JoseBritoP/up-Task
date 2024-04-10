@@ -3,8 +3,23 @@ import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
 import { Link } from 'react-router-dom'
+import { useMutation,useQueryClient } from '@tanstack/react-query'
+import { deleteProject } from '../../server/projectAPI';
+import { toast } from 'react-toastify'
 
 export default function ProjectCard({project}:ProjectCardProps) {
+
+  const queryClient= useQueryClient();
+  const { mutate } = useMutation({
+    mutationFn:deleteProject,
+    onError:(error)=>{
+      toast.error(error.message);
+    },
+    onSuccess:()=>{
+      toast.success(`The project was successfully deleted`);
+      queryClient.invalidateQueries({queryKey:['projects']});
+    }
+  })
   return (
     <li key={project._id} className="flex justify-between gap-x-6 px-5 py-10">
       <div className="flex min-w-0 gap-x-4">
@@ -29,7 +44,7 @@ export default function ProjectCard({project}:ProjectCardProps) {
                 <Link to={`/projects/${project._id}/edit`} className='block px-3 py-1 text-sm leading-6 text-gray-900 font-semibold hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-500'>Edit</Link>
               </Menu.Item>
               <Menu.Item>
-                <button type='button' className='block px-3 py-1 text-sm leading-6 text-red-500 font-semibold dark:text-red-400 ' onClick={() => {} }>Delete</button>
+                <button type='button' className='block px-3 py-1 text-sm leading-6 text-red-500 font-semibold dark:text-red-400 ' onClick={() => mutate(project._id) }>Delete</button>
               </Menu.Item>
             </Menu.Items>
           </Transition>

@@ -68,3 +68,12 @@ export async function editProject({formData,projectId}:ProjectAPIType){
     }
   }
 }
+
+export async function deleteProject(projectId:string){
+  try {
+    const { data } = await api.delete(`/project/${projectId}`);
+    return data
+  } catch (error:any) {
+    throw new Error(`${error.message}`)
+  }
+}
