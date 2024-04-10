@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import { Link } from "react-router-dom"
 import { getProjects } from "../server/projectAPI"
-import ProjectCardContainer from "@/components/Card/ProjectCardContainer";
+import ProjectCardContainer from "@/components/Card/project/ProjectCardContainer";
 
 export default function DashboardView() {
 
