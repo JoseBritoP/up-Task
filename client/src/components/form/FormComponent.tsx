@@ -1,24 +1,9 @@
-import { useForm } from 'react-hook-form'
 import ProjectForm from './ProjectForm'
-import { ProjectFormData } from 'typescript/types/Project'
-import { createProject } from '../../server/projectAPI'
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import useFormComponent from '@/hooks/useFormComponent'
 
 export default function FormComponent() {
-  const navigate = useNavigate();
-  const initialValues:ProjectFormData = {
-    projectName:'',
-    clientName:'',
-    description:''
-  }
-  const { register, handleSubmit, formState:{errors} } = useForm({defaultValues:initialValues})
 
-  const handleForm = async(formData:ProjectFormData) => {
-    const data = await createProject(formData);
-    toast.success(`${data.message}`)
-    navigate('/')
-  }
+  const { register, handleSubmit, errors, handleForm } = useFormComponent();
 
   return (
     <form className='mt-10 bg-white dark:bg-slate-800 shadow-lg p-10 rounded-lg' onSubmit={handleSubmit(handleForm)} noValidate>
