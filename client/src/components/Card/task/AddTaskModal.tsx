@@ -39,17 +39,10 @@ export default function AddTaskModal() {
                   leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-4xl transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all p-16">
-                    <Dialog.Title
-                        as="h3"
-                        className="font-black text-4xl  my-5"
-                    >
-                        Nueva Tarea
-                    </Dialog.Title>
-
-                    <p className="text-xl font-bold">Llena el formulario y crea  {''}
-                        <span className="text-fuchsia-600">una tarea</span>
+                    <Dialog.Title as="h3" className="font-black text-4xl  my-5"> New Task</Dialog.Title>
+                    <p className="text-xl font-bold">Fill out the form and create  {''}
+                      <span className="text-fuchsia-600">a task</span>
                     </p>
-
                 </Dialog.Panel>
               </Transition.Child>
             </div>
