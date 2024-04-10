@@ -1,5 +1,4 @@
-import { ProjectFormData,Project } from "schema/ProjectSchema";
-
+import { ProjectFormData,Project,ProjectDetail } from "schema/ProjectSchema";
 export {
-  Project,ProjectFormData
+  Project,ProjectFormData,ProjectDetail
 }

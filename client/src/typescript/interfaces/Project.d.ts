@@ -1,4 +1,4 @@
-import { Project, ProjectFormData } from "typescript/types/Project"
+import { Project, ProjectFormData,ProjectDetail } from "typescript/types/Project"
 
 export interface ProjectFormProps {
   register:UseFormRegister<ProjectFormData>
@@ -11,4 +11,8 @@ export interface ProjectCardContainerProps {
 
 export interface ProjectCardProps {
   project:Project
+}
+
+export interface EditProjectFormProps {
+  data:ProjectDetail
 }
