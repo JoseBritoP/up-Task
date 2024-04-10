@@ -9,7 +9,7 @@ export default function ToastComponent() {
       closeOnClick
       theme='light'
       transition={Slide}
-      draggable={false}
+      draggable={true}
       stacked={true}
       pauseOnHover={false}
       pauseOnFocusLoss={false}
