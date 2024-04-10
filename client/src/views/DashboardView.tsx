@@ -1,7 +1,15 @@
-
+import { useQuery } from "@tanstack/react-query"
 import { Link } from "react-router-dom"
+import { getProjects } from "../server/projectAPI"
+import ProjectCardContainer from "@/components/Card/ProjectCardContainer";
 
 export default function DashboardView() {
+
+  const { data } = useQuery({
+    queryKey:['projects'],
+    queryFn:getProjects
+  });
+
   return (
     <>
       <div className="max-w-3xl mx-auto">
@@ -12,8 +20,8 @@ export default function DashboardView() {
           dark:bg-purple-800 dark:hover:bg-purple-700
           px-10 py-3 text-white text-xl font-semibold cursor-pointer transition-colors rounded-md">New Project</Link>
         </nav>
-
       </div>
+     { data ? <ProjectCardContainer data={data}/> : (<p>No projects...</p>)}
     </>
   )
 }
