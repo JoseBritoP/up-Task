@@ -1,4 +1,5 @@
 import { Footer, Header } from "@/components/shared"
+import ToastComponent from "@/components/ui/Toast"
 import { Outlet } from "react-router-dom"
 
 export default function AppLayout() {
@@ -9,6 +10,7 @@ export default function AppLayout() {
         <Outlet/>  
       </section>
       <Footer/>
+      <ToastComponent/>
     </>
   )
 }
