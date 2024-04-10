@@ -4,7 +4,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
 import { Link } from 'react-router-dom'
 import { useMutation,useQueryClient } from '@tanstack/react-query'
-import { deleteProject } from '../../server/projectAPI';
+import { deleteProject } from '../../../server/projectAPI';
 import { toast } from 'react-toastify'
 
 export default function ProjectCard({project}:ProjectCardProps) {
