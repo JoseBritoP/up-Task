@@ -26,7 +26,7 @@ export default function ProjectCard({project}:ProjectCardProps) {
                 <Link to={``} className='block px-3 py-1 text-sm leading-6 text-gray-900 font-semibold hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-500'>See details</Link>
               </Menu.Item>
               <Menu.Item>
-                <Link to={``} className='block px-3 py-1 text-sm leading-6 text-gray-900 font-semibold hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-500'>Edit</Link>
+                <Link to={`/projects/${project._id}/edit`} className='block px-3 py-1 text-sm leading-6 text-gray-900 font-semibold hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-500'>Edit</Link>
               </Menu.Item>
               <Menu.Item>
                 <button type='button' className='block px-3 py-1 text-sm leading-6 text-red-500 font-semibold dark:text-red-400 ' onClick={() => {} }>Delete</button>
