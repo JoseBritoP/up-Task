@@ -24,7 +24,7 @@ export default function ProjectCard({project}:ProjectCardProps) {
     <li key={project._id} className="flex justify-between gap-x-6 px-5 py-10">
       <div className="flex min-w-0 gap-x-4">
         <div className="min-w-0 flex-auto space-y-2">
-          <Link to={`/project/${project._id}`} className="text-gray-600 dark:text-gray-300 cursor-pointer hover:underline text-3xl font-bold">{project.projectName}</Link>
+          <Link to={`/projects/${project._id}`} className="text-gray-600 dark:text-gray-300 cursor-pointer hover:underline text-3xl font-bold">{project.projectName}</Link>
           <p className="text-sm text-gray-400">Client: <span>{project.clientName}</span></p>
           <p className="text-sm text-gray-400">{project.description}</p>
         </div>
@@ -38,7 +38,7 @@ export default function ProjectCard({project}:ProjectCardProps) {
           <Transition as={Fragment} enter="transition ease-out duration-100" enterFrom="transform opacity-0 scale-95" enterTo="transform opacity-100 scale-100" leave="transition ease-in duration-75" leaveFrom="transform opacity-100 scale-100" leaveTo="transform opacity-0 scale-95">
             <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white dark:bg-gray-700 py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
               <Menu.Item>
-                <Link to={``} className='block px-3 py-1 text-sm leading-6 text-gray-900 font-semibold hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-500'>See details</Link>
+                <Link to={`/projects/${project._id}`} className='block px-3 py-1 text-sm leading-6 text-gray-900 font-semibold hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-500'>See details</Link>
               </Menu.Item>
               <Menu.Item>
                 <Link to={`/projects/${project._id}/edit`} className='block px-3 py-1 text-sm leading-6 text-gray-900 font-semibold hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-500'>Edit</Link>
