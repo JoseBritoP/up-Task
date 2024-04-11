@@ -60,7 +60,6 @@ export const deleteTask = async (taskId:string) => {
 type Status = TaskPrincipal['status']
 
 export const taskStatus = async ({taskId,status}:{taskId:string,status:Status}) => {
-  console.log(status)
   try {
     const { data } = await api.patch(`/task/${taskId}`,{
       status
