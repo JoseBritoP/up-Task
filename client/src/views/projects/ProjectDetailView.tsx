@@ -4,6 +4,7 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import AddTaskModal from '@/components/shared/task/AddTaskModalSection';
 import TaskList from '@/components/Card/task/TaskListContainer';
 import EditTaskContainer from '@/components/shared/task/EditTaskContainer';
+import TaskModalDetails from '@/components/Card/task/TaskModalDetails';
 
 export default function ProjectDetailView() {
 
@@ -38,6 +39,7 @@ export default function ProjectDetailView() {
       {data && data.tasks && <TaskList tasks={data.tasks}/>}
       <AddTaskModal/>
       <EditTaskContainer/>
+      <TaskModalDetails/>
     </article>  
   )
 }
