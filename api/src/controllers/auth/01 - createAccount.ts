@@ -1,10 +1,11 @@
+import Token from "../../models/Token";
 import User from "../../models/User";
 import { AuthAccount } from "../../schema/auth";
 import { hashPassword } from "../../utils/auth";
+import { generateToken } from "../../utils/token";
 
 const existEmail = async (email:string) => {
   const user = await User.findOne({email});
-  console.log(user)
   if(user) throw new Error(`The email is already used`)
 }
 export const createAccount = async (data:AuthAccount) => {
@@ -13,10 +14,15 @@ export const createAccount = async (data:AuthAccount) => {
 
   const newAccount = new User(data);
   newAccount.password = await hashPassword(data.password);
-  await newAccount.save();
 
+  const token = new Token();
+  token.token = generateToken();
+  token.user = newAccount.id
+  
+
+  const [account,newToken] = await Promise.allSettled([newAccount.save(),token.save()])
   return {
     message:'Check your email to confirm your account',
-    newAccount
+    account:account
   }
 }
