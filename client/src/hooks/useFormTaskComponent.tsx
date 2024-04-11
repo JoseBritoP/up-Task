@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation,useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -17,12 +17,14 @@ export default function useFormTaskComponent() {
 
   const { register, handleSubmit,reset, formState:{errors} } = useForm({defaultValues:initialValues})
 
+  const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn:createTask,
     onError:(error)=>{
       toast.error(`${error.message}`)
     },
     onSuccess:(data)=>{
+      queryClient.invalidateQueries({queryKey:['project',projectId]})
       toast.success(`${data.message}`)
       reset()
       navigate(location.pathname,{replace:true})

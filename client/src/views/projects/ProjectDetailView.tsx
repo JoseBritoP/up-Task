@@ -3,6 +3,7 @@ import React from 'react'
 import { getProject } from '../../server/projectAPI';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import AddTaskModal from '@/components/Card/task/AddTaskModal';
+import TaskList from '@/components/Card/task/TaskList';
 
 export default function ProjectDetailView() {
 
@@ -34,6 +35,7 @@ export default function ProjectDetailView() {
       <nav className='my-5 flex gap-3'>
         <button className='bg-sky-500 hover:bg-sky-600 dark:bg-sky-700 dark:hover:bg-sky-600 px-6 py-2 text-white text-xl font-semibold cursor-pointer transition-colors rounded-md text-center' onClick={()=>navigate(location.pathname + `?newTask=true`)}>Add task</button>
       </nav>
+      {data && data.tasks && <TaskList tasks={data.tasks}/>}
       <AddTaskModal/>
     </article>  
   )
