@@ -16,6 +16,8 @@
       "@/server/*":["server/*"],
       "@/typescript/*":["typescript/*"],
       "@/lib/*":["lib/*"],
+      "@/utils/*":["utils/*"],
+      "@/locales/*":["locales/*"],
     },
 
     /* Bundler mode */
