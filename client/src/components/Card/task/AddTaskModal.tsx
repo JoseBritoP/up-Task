@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import FormTaskComponent from '@/components/form/task/FormTaskComponent';
 
 export default function AddTaskModal() {
 
@@ -8,7 +9,6 @@ export default function AddTaskModal() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const modalTask = queryParams.get('newTask');
-  console.log(modalTask)
   const show = modalTask ? true : false
 
   return (
@@ -38,11 +38,12 @@ export default function AddTaskModal() {
                   leaveFrom="opacity-100 scale-100"
                   leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-4xl transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all p-16">
+                <Dialog.Panel className="w-full max-w-4xl transform overflow-hidden rounded-2xl bg-white dark:bg-gray-900/90 text-left align-middle shadow-xl transition-all p-16">
                     <Dialog.Title as="h3" className="font-black text-4xl  my-5"> New Task</Dialog.Title>
                     <p className="text-xl font-bold">Fill out the form and create  {''}
                       <span className="text-fuchsia-600">a task</span>
                     </p>
+                    <FormTaskComponent/>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
