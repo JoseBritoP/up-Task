@@ -23,11 +23,13 @@ export const taskPrincipalSchema = z.object({
   name,
   description,
   project:z.string(),
-  status
+  status,
+  createdAt:z.string().optional(),
+  updatedAt:z.string().optional(),
 });
 
 export const tasksSchema = z.array(taskSchema);
-
+export type TaskStatus = z.infer<typeof status>
 export type TaskPrincipal = z.infer<typeof taskPrincipalSchema>
 export type Task = z.infer<typeof taskSchema>;
 export type Tasks = z.infer<typeof tasksSchema>;
