@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react'
 import { getProject } from '../../server/projectAPI';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import AddTaskModal from '@/components/Card/task/AddTaskModal';
-import TaskList from '@/components/Card/task/TaskList';
+import AddTaskModal from '@/components/shared/task/AddTaskModalSection';
+import TaskList from '@/components/Card/task/TaskListContainer';
+import EditTaskContainer from '@/components/shared/task/EditTaskContainer';
 
 export default function ProjectDetailView() {
 
@@ -37,6 +37,7 @@ export default function ProjectDetailView() {
       </nav>
       {data && data.tasks && <TaskList tasks={data.tasks}/>}
       <AddTaskModal/>
+      <EditTaskContainer/>
     </article>  
   )
 }
