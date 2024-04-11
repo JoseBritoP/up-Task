@@ -11,7 +11,8 @@ export default function EditTaskContainer() {
   const { data, isError } = useQuery({
     queryKey:['task',taskId],
     queryFn:()=>getTaskId(taskId!),
-    enabled:!!taskId
+    enabled:!!taskId,
+    retry:false
   });
 
   if(isError){
