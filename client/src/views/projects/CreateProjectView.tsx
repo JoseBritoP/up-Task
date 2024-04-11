@@ -1,4 +1,4 @@
-import FormComponent from "@/components/form/FormComponent";
+import FormComponent from "@/components/form/project/ProjectFormComponent";
 import { Link } from "react-router-dom";
 
 export default function CreateProjectView() {
