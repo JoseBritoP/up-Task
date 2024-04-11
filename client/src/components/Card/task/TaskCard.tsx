@@ -2,14 +2,32 @@ import { Fragment } from 'react'
 import { Task } from '../../../schema/TaskSchema'
 import { Menu, Transition } from '@headlessui/react'
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { deleteTask } from '@/server/taskAPI'
+import { toast } from 'react-toastify'
 
 interface TaskCardProps {
   task:Task
 }
 export default function TaskCard({task}:TaskCardProps) {
 
+  const params = useParams();
+  const projectId = params.projectId!
   const navigate = useNavigate();
+
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn:deleteTask,
+    onError:()=>{
+      toast.error(`Error deleting the task`)
+    },
+    onSuccess:()=>{
+      queryClient.invalidateQueries({queryKey:['project',projectId]})
+      toast.success(`Task was deleted successfully`);
+    }
+  })
   return (
     <li className='p-5 bg-white dark:bg-gray-700/60 border-2 border-slate-300 dark:border-slate-600 flex justify-between gap-3 rounded-md'>
       <div className='min-w-0 flex flex-col gap-y-4'>
@@ -35,7 +53,9 @@ export default function TaskCard({task}:TaskCardProps) {
                   onClick={()=>navigate(location.pathname+`?editTask=${task._id}`)} >Edit Task</button>
                 </Menu.Item>
                 <Menu.Item>
-                  <button type='button' className='block px-3 py-1 text-sm leading-6 text-red-500 font-semibold'>Delete Task</button>
+                  <button type='button' className='block px-3 py-1 text-sm leading-6 text-red-500 font-semibold'
+                    onClick={()=>mutate(task._id)}
+                  >Delete Task</button>
                 </Menu.Item>
               </Menu.Items>
             </Transition>
