@@ -13,6 +13,7 @@ const description = z.string({
 const status = z.enum(['pending','onHold','inProgress','underReview','completed']).default('pending')
 
 export const taskSchema = z.object({
+  _id:z.string(),
   name,
   description,
   status
