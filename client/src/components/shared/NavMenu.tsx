@@ -2,7 +2,6 @@ import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { Bars3Icon } from '@heroicons/react/20/solid'
 import { Link } from 'react-router-dom'
-import DarkMode from './DarkMode'
 
 export default function NavMenu() {
   return (
@@ -31,7 +30,6 @@ export default function NavMenu() {
               to='/'
               className='block p-2 hover:text-purple-950 dark:hover:text-purple-600'
             >My projects</Link>
-            <DarkMode/>
             <button
               className='block p-2 hover:text-purple-950 dark:hover:text-purple-600'
               type='button'

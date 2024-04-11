@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import NavMenu from "./NavMenu";
+import DarkMode from "./DarkMode";
 
 export default function Header() {
   return (
@@ -11,7 +12,10 @@ export default function Header() {
             <Logo/>
           </Link>
         </div>
-        <NavMenu/>
+        <div className="flex justify-between items-center gap-x-5">
+          <DarkMode/>
+          <NavMenu/>
+        </div>
       </div>
     </header>
   )
