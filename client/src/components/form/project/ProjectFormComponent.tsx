@@ -1,5 +1,5 @@
 import ProjectForm from './ProjectFormInputs'
-import useFormComponent from '@/hooks/useFormComponent'
+import useFormComponent from '@/hooks/project/useProjectFormComponent'
 
 export default function FormComponent() {
 

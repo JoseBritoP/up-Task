@@ -1,4 +1,4 @@
-import useEditFormTask from "@/hooks/useEditFormTask";
+import useEditFormTask from "@/hooks/task/useTaskFormEdit";
 import { Link, useParams } from "react-router-dom";
 import { EditTaskModalProps } from "typescript/interfaces/Task";
 import TaskForm from "./TaskFormInputs";

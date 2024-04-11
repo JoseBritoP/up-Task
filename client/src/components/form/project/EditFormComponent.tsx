@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import ProjectForm from './ProjectFormInputs'
-import useEditFormComponent from '@/hooks/useEditFormComponent';
+import useEditFormComponent from '@/hooks/project/useProjectFormEditComponent';
 import { EditProjectFormProps } from 'typescript/interfaces/Project'
 
 export default function EditFormComponent({data}:EditProjectFormProps) {

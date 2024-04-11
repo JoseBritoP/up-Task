@@ -1,5 +1,5 @@
 import TaskForm from './TaskFormInputs'
-import useFormTaskComponent from '@/hooks/useFormTaskComponent'
+import useFormTaskComponent from '@/hooks/task/useTaskFormComponent'
 
 export default function TaskFormComponent() {
 
