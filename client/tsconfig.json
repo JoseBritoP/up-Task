@@ -11,7 +11,11 @@
       "@/components/*":["components/*"],
       "@/views/*":["views/*"],
       "@/layouts/*":["layouts/*"],
-      "@/hooks/*":["hooks/*"]
+      "@/hooks/*":["hooks/*"],
+      "@/schema/*":["schema/*"],
+      "@/server/*":["server/*"],
+      "@/typescript/*":["typescript/*"],
+      "@/lib/*":["lib/*"],
     },
 
     /* Bundler mode */
