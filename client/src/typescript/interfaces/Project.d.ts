@@ -1,3 +1,4 @@
+import { TaskFormData } from "schema/TaskSchema"
 import { Project, ProjectFormData,ProjectDetail } from "typescript/types/Project"
 
 export interface ProjectFormProps {
@@ -15,4 +16,9 @@ export interface ProjectCardProps {
 
 export interface EditProjectFormProps {
   data:ProjectDetail
+}
+
+export interface TaskFormProps {
+  errors: FieldErrors<TaskFormData>
+  register: UseFormRegister<TaskFormData>
 }

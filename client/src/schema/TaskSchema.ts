@@ -18,7 +18,16 @@ export const taskSchema = z.object({
   status
 })
 
+export const taskPrincipalSchema = z.object({
+  name,
+  description,
+  project:z.string(),
+  status
+});
+
 export const tasksSchema = z.array(taskSchema);
+
+export type TaskPrincipal = z.infer<typeof taskPrincipalSchema>
 export type Task = z.infer<typeof taskSchema>;
 export type Tasks = z.infer<typeof tasksSchema>;
 export type TaskFormData = Pick<Task,'name'| 'description'>;
