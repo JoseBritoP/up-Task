@@ -1,4 +1,5 @@
 import type { Request,Response } from "express";
+import { createAccount } from "../controllers/auth";
 
 export const GET = async (req:Request,res:Response) => {
   // try {
@@ -20,14 +21,13 @@ export const GETBYID = async (req:Request,res:Response) => {
 }
 
 export const POST = async (req:Request,res:Response) => {
-  return res.json({DIY:'Create-Account'})
-  // const data = req.data;
-  // try {
-  //   const newProject = await createProject(data);
-  //   return res.status(201).json(newProject)
-  // } catch (error:any) {
-  //   return res.status(400).json({error:JSON.parse(error.message)})
-  // }
+  const data = req.body
+  try {
+    const newAccount = await createAccount(data);
+    return res.status(201).json(newAccount)
+  } catch (error:any) {
+    return res.status(400).json({error:error.message})
+  }
 }
 
 export const PUT = async (req:Request,res:Response) => {

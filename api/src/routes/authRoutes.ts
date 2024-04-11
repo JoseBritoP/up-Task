@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { AuthHandler } from "../handlers/Auth";
+import { createAccountMiddleware } from "../middleware/auth";
 // Handlers
 
 export const authRouter = Router();
@@ -10,7 +11,7 @@ export const authRouter = Router();
 // Endpoints
 
 authRouter.get('/',AuthHandler.GET);
-authRouter.post('/create-account',AuthHandler.POST);
+authRouter.post('/create-account',createAccountMiddleware,AuthHandler.POST);
 authRouter.get('/:id',AuthHandler.GETBYID);
 authRouter.put('/:id',AuthHandler.PUT);
 authRouter.patch('/:id',AuthHandler.PATCH);
