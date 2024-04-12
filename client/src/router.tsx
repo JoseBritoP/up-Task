@@ -8,6 +8,8 @@ import AuthLayout from "./layouts/AuthLayout";
 import AuthView from "./views/auth/AuthView";
 import ConfirmAccount from "./views/auth/ConfirmAccount";
 import RequestNewCode from "./views/auth/RequestNewCode";
+import ResetPassword from "./views/auth/ResetPassword";
+import NewPassword from "./views/auth/NewPassword";
 
 export default function Router(){
   return (
@@ -23,6 +25,8 @@ export default function Router(){
           <Route path="/auth" element={<AuthView/>}/>
           <Route path="/auth/confirm-account" element={<ConfirmAccount/>}/>
           <Route path="/auth/request-code" element={<RequestNewCode/>}/>
+          <Route path="/auth/forget-password" element={<ResetPassword/>}/>
+          <Route path="/auth/new-password" element={<NewPassword/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
