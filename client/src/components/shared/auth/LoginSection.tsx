@@ -1,5 +1,6 @@
 import LoginForm from '@/components/form/auth/LoginForm'
 import { AuthProps } from '@/typescript/interfaces/Auth'
+import { Link } from 'react-router-dom'
 
 export default function LoginSection({handleAuth}:AuthProps) {
   return (
@@ -12,6 +13,7 @@ export default function LoginSection({handleAuth}:AuthProps) {
         <h1 className="text-gray-200 text-lg font-medium">Don't have an account?</h1>
         <button onClick={()=>handleAuth()} className="text-lg font-semibold text-sky-500 hover:text-sky-400 shadow-md hover:underline">Sign up</button>
       </div>
+      <Link to={'/auth/forget-password'}>Forgot your password?</Link>
     </section>
   )
 }
