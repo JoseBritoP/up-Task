@@ -1,19 +1,10 @@
 import ErrorMessage from "@/components/shared/ErrorMessage"
-import { LoginForm as LoginAuth } from "@/schema/AuthSchema"
-import { useForm } from "react-hook-form"
+import useLoginForm from "@/hooks/auth/useLoginForm"
 
 
 export default function LoginForm() {
   
-  const initialValues: LoginAuth = {
-    email: '',
-    password: '',
-  }
-  const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues })
-
-  const handleLogin = (formData: LoginAuth) => { 
-    console.log(formData)
-  }
+  const { register, handleSubmit, handleLogin, errors } = useLoginForm();
 
   return (
     <>
