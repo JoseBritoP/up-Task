@@ -1,4 +1,5 @@
 import { Logo } from "@/components/shared"
+import ToastComponent from "@/components/ui/Toast"
 import { Outlet } from "react-router-dom"
 
 export default function AuthLayout() {
@@ -12,6 +13,7 @@ export default function AuthLayout() {
           </div>
         </div>
       </div>
+      <ToastComponent/>
     </>
   )
 }
