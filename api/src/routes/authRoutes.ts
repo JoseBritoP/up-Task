@@ -1,18 +1,18 @@
 import { Router } from "express";
 import { AuthHandler } from "../handlers/Auth";
-import { createAccountMiddleware } from "../middleware/auth";
 // Handlers
 
 export const authRouter = Router();
 
 // Middleware
+import { createAccountMiddleware,authLoginMiddleware } from "../middleware/auth";
 
 
 // Endpoints
 
 authRouter.get('/',AuthHandler.GET);
-authRouter.post('/create-account',createAccountMiddleware,AuthHandler.POSTACCOUNT);
-authRouter.get('/confirm-account/:token',AuthHandler.CONFIRMACCOUNT);
-authRouter.get('/:id',AuthHandler.GETBYID);
+authRouter.post('/create-account',createAccountMiddleware,AuthHandler.POSTREGISTER);
+authRouter.get('/confirm-account/:token',AuthHandler.GETCONFIRMACCOUNT);
+authRouter.post('/login',authLoginMiddleware,AuthHandler.POSTLOGIN);
 authRouter.patch('/:id',AuthHandler.PATCH);
 authRouter.delete('/:id',AuthHandler.DELETE);

@@ -14,5 +14,10 @@ export const authSchema = z.object({
   confirmed
 })
 
+export const authLoginSchema = z.object({
+  email,
+  password,
+})
 
 export type AuthAccount = z.infer<typeof authSchema>
+export type AuthLogin = z.infer<typeof authLoginSchema>
