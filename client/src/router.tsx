@@ -6,6 +6,7 @@ import EditProjectView from "./views/projects/EditProjectView";
 import ProjectDetailView from "./views/projects/ProjectDetailView";
 import AuthLayout from "./layouts/AuthLayout";
 import AuthView from "./views/auth/AuthView";
+import ConfirmAccount from "./views/auth/ConfirmAccount";
 
 export default function Router(){
   return (
@@ -19,6 +20,7 @@ export default function Router(){
         </Route>
         <Route element={<AuthLayout/>}>
           <Route path="/auth" element={<AuthView/>}/>
+          <Route path="/auth/confirm-account" element={<ConfirmAccount/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

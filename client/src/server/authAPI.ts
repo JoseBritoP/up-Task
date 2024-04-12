@@ -13,3 +13,14 @@ export async function createAccount(formData:Auth){
     }
   }
 }
+
+export async function confirmAccount (token:string){
+  try {
+    const { data } = await api.get(`/auth/confirm-account/${token}`);
+    return data
+  } catch (error) {
+    if(isAxiosError(error) && error.message){
+      throw new Error(error.response?.data.error)
+    }
+  }
+}
