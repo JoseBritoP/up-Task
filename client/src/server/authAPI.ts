@@ -24,3 +24,14 @@ export async function confirmAccount (token:string){
     }
   }
 }
+
+export async function requestConfirmCode (formData:{email:string}){
+  try {
+    const { data } = await api.post(`/auth/request-code/`,formData);
+    return data
+  } catch (error) {
+    if(isAxiosError(error) && error.message){
+      throw new Error(error.response?.data.error)
+    }
+  }
+}
