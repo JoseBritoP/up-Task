@@ -1,5 +1,5 @@
 import type { Request,Response } from "express";
-import { confirmAccount, createAccount, loginAccount } from "../controllers/auth";
+import { confirmAccount, createAccount, loginAccount, requestConfirmationCode } from "../controllers/auth";
 
 export const GET = async (req:Request,res:Response) => {
   // try {
@@ -74,4 +74,14 @@ export const DELETE = async (req:Request,res:Response) => {
   // } catch (error:any) {
   //   return res.status(404).json({error:error.message});
   // }
+}
+
+export const REQUESTCODE = async (req:Request,res:Response) => {
+  const data = req.body
+  try {
+    const newAccount = await requestConfirmationCode(data);
+    return res.status(201).json(newAccount)
+  } catch (error:any) {
+    return res.status(400).json({error:error.message})
+  }
 }
