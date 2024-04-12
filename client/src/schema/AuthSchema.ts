@@ -14,3 +14,4 @@ export const AuthSchema = z.object({
 
 export type Auth = z.infer<typeof AuthSchema>
 export type LoginForm = Pick<Auth,'email'| 'password'>
+export type ResetPassword = Pick<Auth,'password'| 'repeatPassword'>
