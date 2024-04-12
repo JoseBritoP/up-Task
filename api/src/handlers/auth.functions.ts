@@ -1,5 +1,5 @@
 import type { Request,Response } from "express";
-import { createAccount } from "../controllers/auth";
+import { confirmAccount, createAccount } from "../controllers/auth";
 
 export const GET = async (req:Request,res:Response) => {
   // try {
@@ -20,7 +20,7 @@ export const GETBYID = async (req:Request,res:Response) => {
   // }
 }
 
-export const POST = async (req:Request,res:Response) => {
+export const POSTACCOUNT = async (req:Request,res:Response) => {
   const data = req.body
   try {
     const newAccount = await createAccount(data);
@@ -29,6 +29,16 @@ export const POST = async (req:Request,res:Response) => {
     return res.status(400).json({error:error.message})
   }
 }
+
+export const CONFIRMACCOUNT = async (req:Request, res:Response) => {
+  const { token } = req.params
+  try {
+    const accountConfirmed = await confirmAccount(token);
+    return res.status(200).json(accountConfirmed)
+  } catch (error:any) {
+    return res.status(400).json({error:error.message})
+  }
+};
 
 export const PUT = async (req:Request,res:Response) => {
   // const data = req.updateData;

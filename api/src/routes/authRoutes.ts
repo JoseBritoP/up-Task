@@ -11,8 +11,8 @@ export const authRouter = Router();
 // Endpoints
 
 authRouter.get('/',AuthHandler.GET);
-authRouter.post('/create-account',createAccountMiddleware,AuthHandler.POST);
+authRouter.post('/create-account',createAccountMiddleware,AuthHandler.POSTACCOUNT);
+authRouter.get('/confirm-account/:token',AuthHandler.CONFIRMACCOUNT);
 authRouter.get('/:id',AuthHandler.GETBYID);
-authRouter.put('/:id',AuthHandler.PUT);
 authRouter.patch('/:id',AuthHandler.PATCH);
 authRouter.delete('/:id',AuthHandler.DELETE);
