@@ -79,9 +79,9 @@ export const DELETE = async (req:Request,res:Response) => {
 export const REQUESTCODE = async (req:Request,res:Response) => {
   const data = req.body
   try {
-    const newAccount = await requestConfirmationCode(data);
-    return res.status(201).json(newAccount)
+    const newToken = await requestConfirmationCode(data);
+    return res.status(200).json(newToken)
   } catch (error:any) {
-    return res.status(400).json({error:error.message})
+    return res.status(403).json({error:error.message})
   }
 }

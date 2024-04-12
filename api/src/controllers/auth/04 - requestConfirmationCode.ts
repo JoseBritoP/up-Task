@@ -1,12 +1,13 @@
 import Token from "../../models/Token";
 import User from "../../models/User";
-import { AuthAccount } from "../../schema/auth";
 import { generateToken } from "../../utils/token";
 import { AuthEmail } from "../../emails/AuthEmail";
 
-export const requestConfirmationCode = async (data:AuthAccount) => {
+export const requestConfirmationCode = async (data:{email:string}) => {
   const user = await User.findOne({email:data.email});
   if(!user) throw new Error(`The email don't exist`)
+
+  if(user.confirmed) throw new Error(`Your account is already confirmed!`)
 
   const token = new Token();
   token.token = generateToken();
