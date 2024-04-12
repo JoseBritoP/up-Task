@@ -46,3 +46,14 @@ export async function authenticateUser(formData:LoginForm){
     }
   }
 }
+
+export async function resetPassword(formData:{email:string}){
+  try {
+    const { data } = await api.post('/auth/forgot-password',formData);
+    return data
+  } catch (error:any) {
+    if(isAxiosError(error) && error.message){
+      throw new Error(error.response?.data.error)
+    }
+  }
+}
