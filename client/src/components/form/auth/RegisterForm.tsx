@@ -1,27 +1,9 @@
 import ErrorMessage from "@/components/shared/ErrorMessage";
-import { Auth } from "@/schema/AuthSchema";
-import { useForm } from "react-hook-form";
+import useRegisterForm from "@/hooks/auth/useRegisterForm";
 
 export default function RegisterForm() {
-  const initialValues: Auth = {
-    name: "",
-    email: "",
-    password: "",
-    repeatPassword: "",
-  };
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<Auth>({ defaultValues: initialValues });
-
-  const password = watch("password");
-
-  const handleRegister = (formData: Auth) => {
-    console.log(formData);
-  };
+  const { register, handleSubmit, password, handleRegister,errors } = useRegisterForm();
 
   return (
     <>
