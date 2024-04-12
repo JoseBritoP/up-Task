@@ -22,6 +22,23 @@ const sendConfirmationEmail = async ({email,name,token}:Email) => {
   })
 }
 
+const sendChangePassword = async ({email,name,token}:Email) => {
+  await transport.sendMail({
+    from:'UpTask <admin@uptask.com>',
+    to:email,
+    subject:'UpTask - Reset Password',
+    text:'UpTask - Reset Password',
+    html:`<p>Hello ${name}, you seem to have forgotten your password</p>
+    <p>Please visit the following link to reset it:</p>
+    <a href="${process.env.FRONTEND_URL}/auth/forget-password">Confirm Account</a>
+    <p>:and enter the following token: <b>${token}</b></p>
+    <p>This token expires in 10 min</p>
+    `
+  })
+}
+
+
 export class AuthEmail {
   static sendConfirmationEmail = sendConfirmationEmail
+  static sendChangePassword = sendChangePassword
 }

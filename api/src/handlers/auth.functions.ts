@@ -1,5 +1,5 @@
 import type { Request,Response } from "express";
-import { confirmAccount, createAccount, loginAccount, requestConfirmationCode } from "../controllers/auth";
+import { confirmAccount, createAccount, loginAccount, requestConfirmationCode,forgotPassword } from "../controllers/auth";
 
 export const GET = async (req:Request,res:Response) => {
   // try {
@@ -85,3 +85,13 @@ export const REQUESTCODE = async (req:Request,res:Response) => {
     return res.status(403).json({error:error.message})
   }
 }
+
+export const FORGETPASSWORD = async (req:Request,res:Response) => {
+  const data = req.body
+  try {
+    const newPassword = await forgotPassword(data);
+    return res.status(200).json(newPassword)
+  } catch (error:any) {
+    return res.status(403).json({error:error.message})
+  }
+};
