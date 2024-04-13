@@ -1,6 +1,6 @@
 import { TeamMemberType } from "@/schema/TeamMemberSchema";
 import { addPartnetToProject } from "@/server/teamAPI";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -15,6 +15,7 @@ export default function SearchResult({ user, resetData }: SearchResultProps) {
   const params = useParams();
   const projectId = params.projectId!
 
+  const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn:addPartnetToProject,
     onError:(error)=>{
@@ -24,6 +25,7 @@ export default function SearchResult({ user, resetData }: SearchResultProps) {
       toast.success(`The ${data.message}`);
       resetData();
       navigate(location.pathname,{replace:true})
+      queryClient.invalidateQueries({queryKey:['projectTeam',projectId]})
     }
   })
 
