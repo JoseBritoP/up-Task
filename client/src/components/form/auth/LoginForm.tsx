@@ -10,7 +10,7 @@ export default function LoginForm() {
     <>
       <form
         onSubmit={handleSubmit(handleLogin)}
-        className="space-y-8 p-10 bg-white rounded-md"
+        className="space-y-8 p-10 bg-white dark:bg-gray-800/50 rounded-md"
         noValidate
       >
         <div className="flex flex-col gap-5">

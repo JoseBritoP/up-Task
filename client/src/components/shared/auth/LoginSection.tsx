@@ -13,7 +13,7 @@ export default function LoginSection({handleAuth}:AuthProps) {
         <h1 className="text-gray-200 text-lg font-medium">Don't have an account?</h1>
         <button onClick={()=>handleAuth()} className="text-lg font-semibold text-sky-500 hover:text-sky-400 shadow-md hover:underline">Sign up</button>
       </div>
-      <Link to={'/auth/forget-password'}>Forgot your password?</Link>
+      <Link to={'/auth/forget-password'} className='text-lg text-gray-200 font-medium'>Forgot your password?</Link>
     </section>
   )
 }

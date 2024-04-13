@@ -3,8 +3,11 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { authenticateUser } from "@/server/authAPI";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function useLoginForm() {
+
+  const navigate = useNavigate();
 
   const initialValues: LoginForm = {
     email: "",
@@ -22,6 +25,7 @@ export default function useLoginForm() {
       toast.success(data.message);
       localStorage.setItem('AUTH_TOKEN',data.token)
       reset();
+      navigate('/projects');
     },
   });
 

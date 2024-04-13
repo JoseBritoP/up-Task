@@ -7,8 +7,8 @@ export default function AppLayout() {
 
   const { data, isError, isLoading } = useAuth();
   if(isLoading) return <p>Loading..</p>
-  if(isError) {
-  <Navigate to={'/auth'}/>
+  if(isError || data === undefined) {
+    return (<Navigate to={'/auth'}/>)
   }
   if(data) return (
     <>
