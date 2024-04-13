@@ -2,13 +2,17 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { ResetPassword } from "@/schema/AuthSchema";
 import ErrorMessage from "../../shared/ErrorMessage";
+import { useMutation } from "@tanstack/react-query";
+import { updatePassword } from "@/server/authAPI";
+import { toast } from "react-toastify";
 
-export default function NewPasswordForm() {
+export default function NewPasswordForm({token}:{token:string}) {
   const navigate = useNavigate();
   const initialValues: ResetPassword = {
     password: "",
     repeatPassword: "",
   };
+
   const {
     register,
     handleSubmit,
@@ -17,8 +21,24 @@ export default function NewPasswordForm() {
     formState: { errors },
   } = useForm({ defaultValues: initialValues });
 
+  const { mutate } = useMutation({
+    mutationFn:updatePassword,
+    onError:(error)=>{
+      toast.error(error.message)
+    },
+    onSuccess:(data)=>{
+      toast.success(data.message); 
+      reset();
+      navigate('/auth')
+    }
+  })
+
   const handleNewPassword = (formData: ResetPassword) => {
-    console.log(formData)
+    const data = {
+      token,
+      data:formData
+    }
+    mutate(data)
   };
 
   const password = watch("password");

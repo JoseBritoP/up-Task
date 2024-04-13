@@ -57,3 +57,32 @@ export async function resetPassword(formData:{email:string}){
     }
   }
 }
+
+export async function validateToken(formData:{token:string}){
+  try {
+    const { data } = await api.get(`/auth/validate-token/${formData.token}`);
+    return data
+  } catch (error:any) {
+    if(isAxiosError(error) && error.message){
+      throw new Error(error.response?.data.error)
+    }
+  }
+}
+
+interface UpdatePasswordProps {
+  token:string,
+  data:{
+    password:string
+    repeatPassword:string
+  }
+}
+export async function updatePassword(formData:UpdatePasswordProps){
+  try {
+    const { data } = await api.post(`/auth/update-password/${formData.token}`,formData.data);
+    return data
+  } catch (error:any) {
+    if(isAxiosError(error) && error.message){
+      throw new Error(error.response?.data.error)
+    }
+  }
+}
