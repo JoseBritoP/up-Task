@@ -13,8 +13,9 @@ export const GET = async (req:Request,res:Response) => {
 
 export const GETBYID = async (req:Request,res:Response) => {
   const id = req.paramsId
+  const user = req.user
   try {
-    const project = await getProject(id);
+    const project = await getProject(id,user?.id);
     return res.status(200).json(project)
   } catch (error:any) {
     return res.status(404).json({error:error.message})

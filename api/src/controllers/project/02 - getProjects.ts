@@ -17,7 +17,7 @@ export const getProjects = async (userId:string) => {
   return projects
 };
 
-export const getProject = async (id:string) => {
+export const getProject = async (id:string,userId?:string) => {
 
   if(/^[0-9]+$/.test(id)) throw new Error('Id invalid')
 
@@ -30,6 +30,7 @@ export const getProject = async (id:string) => {
   })
 
   if(!project) throw new Error(`Project not found ${id}`)
-  
+
+  if( userId && project.manager.toString() !== userId.toString()) throw new Error('Unauthorized');
   return project
 }
