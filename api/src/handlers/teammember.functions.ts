@@ -1,6 +1,7 @@
 import type { Request,Response } from "express";
 import { createTask,getTask,getTasks,getTasksInProject,updateTask,deleteTask,updateTaskStatus } from "../controllers/task";
 import { findTeam, addTeam } from "../controllers/project/team";
+import { deleteTeamMember } from "../controllers/project/team/03 - deleteTeamMember";
 
 // TODO: Middleware here
 
@@ -47,7 +48,6 @@ export const ADDTEAM = async (req:Request,res:Response) => {
 }
 
 
-
 export const PUT = async (req:Request,res:Response) => {
   const data = req.taskUpdateData;
   try {
@@ -70,11 +70,12 @@ export const PATCH = async (req:Request,res:Response) => {
   
 }
 
-export const DELETE = async (req:Request,res:Response) => {
-  const id = req.paramsId
+export const DELETEMEMBER = async (req:Request,res:Response) => {
+  const { projectId } = req.params;
+  const data = req.body
   try {
-    const taskDeleted = await deleteTask(id);
-    return res.status(200).json(taskDeleted);
+    const deletedMember = await deleteTeamMember({projectId,data});
+    return res.status(200).json(deletedMember);
   } catch (error:any) {
     return res.status(404).json({error:error.message});
   }
