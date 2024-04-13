@@ -1,14 +1,15 @@
 import type { Request,Response } from "express";
-import { confirmAccount, createAccount, loginAccount, requestConfirmationCode,forgotPassword, validateToken } from "../controllers/auth";
+import { confirmAccount, createAccount, loginAccount, requestConfirmationCode,forgotPassword, validateToken,getAuthUser } from "../controllers/auth";
 import { updatePassword } from "../controllers/auth/07 - updatePassword";
 
 export const GET = async (req:Request,res:Response) => {
-  // try {
-  //   const projects = await getProjects();
-  //   return res.status(200).json(projects);
-  // } catch (error:any) {
-  //   return res.status(404).json({error:error.message})
-  // }
+  const user = req.user
+  try {
+    const authUser = await getAuthUser(user);
+    return res.status(200).json(authUser);
+  } catch (error:any) {
+    return res.status(404).json({error:error.message})
+  }
 }
 
 export const GETBYID = async (req:Request,res:Response) => {

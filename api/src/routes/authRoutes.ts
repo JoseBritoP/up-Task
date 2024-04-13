@@ -5,7 +5,7 @@ import { AuthHandler } from "../handlers/Auth";
 export const authRouter = Router();
 
 // Middleware
-import { createAccountMiddleware,authLoginMiddleware } from "../middleware/auth";
+import { createAccountMiddleware,authLoginMiddleware, authenticate } from "../middleware/auth";
 
 
 // Endpoints
@@ -19,4 +19,4 @@ authRouter.post('/request-code',AuthHandler.REQUESTCODE);
 authRouter.post('/forgot-password',AuthHandler.FORGETPASSWORD)
 authRouter.patch('/:id',AuthHandler.PATCH);
 authRouter.delete('/:id',AuthHandler.DELETE);
-authRouter.get('/',AuthHandler.GET);
+authRouter.get('/user',authenticate,AuthHandler.GET);
