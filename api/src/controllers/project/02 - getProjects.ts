@@ -1,8 +1,16 @@
 import Project from "../../models/Project";
 
-export const getProjects = async () => {
+export const getProjects = async (userId:string) => {
 
-  const projects = await Project.find({});
+  if(!userId) throw new Error('Unauthorized')
+
+  const projects = await Project.find({
+    $or:[
+      {
+        manager:{$in:userId}
+      }
+    ]
+  });
 
   if(!projects.length) throw new Error(`No projects`)
 

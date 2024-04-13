@@ -2,8 +2,9 @@ import type { Request,Response } from "express";
 import { createProject,deleteProject,getProject,getProjects, updateProject } from "../controllers/project";
 
 export const GET = async (req:Request,res:Response) => {
+  const user = req.user;
   try {
-    const projects = await getProjects();
+    const projects = await getProjects(user?.id);
     return res.status(200).json(projects);
   } catch (error:any) {
     return res.status(404).json({error:error.message})

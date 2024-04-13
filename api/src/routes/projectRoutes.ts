@@ -9,7 +9,7 @@ import { authenticate } from "../middleware/auth";
 
 // Endpoints
 
-projectRouter.get('/',ProjectHandler.GET);
+projectRouter.get('/',authenticate,ProjectHandler.GET);
 projectRouter.post('/',authenticate,postProjectCheck,ProjectHandler.POST);
 projectRouter.get('/:id',checkId,ProjectHandler.GETBYID);
 projectRouter.put('/:id',putProjectCheck,ProjectHandler.PUT);
