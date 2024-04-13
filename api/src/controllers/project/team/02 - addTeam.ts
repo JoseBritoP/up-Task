@@ -13,7 +13,7 @@ export const addTeam = async(data:any) => {
   project.team.push(user.id);
   await project.save();
 
-  // return {
-  //   message:'User has been successfully added'
-  // }
+  return {
+    message:'User has been successfully added'
+  }
 };

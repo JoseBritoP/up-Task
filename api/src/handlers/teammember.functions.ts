@@ -1,15 +1,14 @@
 import type { Request,Response } from "express";
 import { createTask,getTask,getTasks,getTasksInProject,updateTask,deleteTask,updateTaskStatus } from "../controllers/task";
-import { findTeam, addTeam } from "../controllers/project/team";
-import { deleteTeamMember } from "../controllers/project/team/03 - deleteTeamMember";
+import { findTeam, addTeam,deleteTeamMember,getTeamMember } from "../controllers/project/team";
 
 // TODO: Middleware here
 
 export const GET = async (req:Request,res:Response) => {
   const { projectId } = req.params;
   try {
-    const tasks = projectId !== undefined ? await getTasksInProject(projectId) : await getTasks();
-    return res.status(200).json(tasks);
+    const teamMembers = await getTeamMember(projectId)
+    return res.status(200).json(teamMembers);
   } catch (error:any) {
     return res.status(404).json({error:error.message})
   }
