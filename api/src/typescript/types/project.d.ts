@@ -9,4 +9,5 @@ export type ProjectType = Document & {
   description:string
   tasks: PopulatedDoc<TaskType & Document>[]
   manager: PopulatedDoc<User & Document>
+  team:PopulatedDoc<User & Document>[]
 }

@@ -6,6 +6,10 @@ const password = z.string().min(3,{message:'The password is so short'}).max(20,{
 const repeatPassword = z.string().min(3,{message:'The repeat password is so short'}).max(20,{message:'The repeat password is so long'});
 const confirmed = z.boolean().default(false);
 
+export const emailSchema = z.object({
+  email
+})
+
 export const authSchema = z.object({
   name,
   email,

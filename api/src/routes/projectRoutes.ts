@@ -6,6 +6,7 @@ export const projectRouter = Router();
 // Middlewares
 import { postProjectCheck,putProjectCheck,checkId } from "../middleware/project";
 import { authenticate } from "../middleware/auth";
+import { TeamHandler } from "../handlers/TeamMember";
 
 // Endpoints
 
@@ -16,3 +17,6 @@ projectRouter.get('/:id',checkId,ProjectHandler.GETBYID);
 projectRouter.put('/:id',putProjectCheck,ProjectHandler.PUT);
 projectRouter.patch('/:id',ProjectHandler.PATCH);
 projectRouter.delete('/:id',checkId,ProjectHandler.DELETE);
+// --
+projectRouter.post("/:projectId/team/find",TeamHandler.FINDTEAM)
+projectRouter.post("/:projectId/team/",TeamHandler.ADDTEAM)
