@@ -21,4 +21,4 @@ projectRouter.delete('/:id',checkId,ProjectHandler.DELETE);
 projectRouter.post("/:projectId/team/find",TeamHandler.FINDTEAM)
 projectRouter.post("/:projectId/team/",TeamHandler.ADDTEAM)
 projectRouter.get("/:projectId/team/",TeamHandler.GET)
-projectRouter.delete("/:projectId/team/",TeamHandler.DELETEMEMBER)
+projectRouter.delete("/:projectId/team/:userId",TeamHandler.DELETEMEMBER)

@@ -24,3 +24,25 @@ export async function addPartnetToProject({projectId,formData}:{projectId:string
     }
   }
 }
+
+export async function getParternsProject(projectId:string){
+  try {
+    const { data } = await api.get(`/project/${projectId}/team`);
+    return data
+  } catch (error:any) {
+    if(isAxiosError(error) && error.response){
+      throw new Error(error.response.data.error);
+    }
+  }
+}
+
+export async function removeParternsProject({projectId,userId}:{projectId:string,userId:string}){
+  try {
+    const { data } = await api.delete(`/project/${projectId}/team/${userId}`);
+    return data
+  } catch (error:any) {
+    if(isAxiosError(error) && error.response){
+      throw new Error(error.response.data.error);
+    }
+  }
+}

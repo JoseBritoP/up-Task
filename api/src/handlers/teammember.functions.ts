@@ -70,10 +70,9 @@ export const PATCH = async (req:Request,res:Response) => {
 }
 
 export const DELETEMEMBER = async (req:Request,res:Response) => {
-  const { projectId } = req.params;
-  const data = req.body
+  const { projectId,userId } = req.params;
   try {
-    const deletedMember = await deleteTeamMember({projectId,data});
+    const deletedMember = await deleteTeamMember({projectId,userId});
     return res.status(200).json(deletedMember);
   } catch (error:any) {
     return res.status(404).json({error:error.message});
