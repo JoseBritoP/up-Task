@@ -1,16 +1,18 @@
 import Project from "../../models/Project";
-import { projectSchema } from "../../schema/project";
-import { CreateProjectProps } from "../../typescript/interfaces/project";
+import { CreateProjectWithUserProps } from "../../typescript/interfaces/project";
 
-export const createProject = async (data:CreateProjectProps) => {
+export const createProject = async (data:CreateProjectWithUserProps) => {
 
-  const { clientName, description, projectName } = data;
+  const { clientName, description, projectName } = data.data;
   
   const newProject = new Project({
     projectName,
     clientName,
     description
   })
+
+  // Agree manager
+  newProject.manager = data.userId
 
   const savedProject = await newProject.save();
 

@@ -40,8 +40,7 @@ export const authLoginMiddleware = (req:Request,res:Response,next:NextFunction) 
 
 export const authenticate = async (req:Request,res:Response,next:NextFunction) => {
   try {
-  
-  if(!req.headers.authorization === undefined || req.headers.authorization?.split(' ')[1] === undefined) throw new Error(`Unauthorized`)
+    if(!req.headers.authorization === undefined || req.headers.authorization?.split(' ')[1] === undefined) throw new Error(`Unauthorized`)
     const token = req.headers.authorization?.split(' ')[1]
 
     const decoded = jwt.verify(token,process.env.JWT_SECRET!)
@@ -51,7 +50,6 @@ export const authenticate = async (req:Request,res:Response,next:NextFunction) =
       if(!user) throw new Error(`Invalid token`)
     }
     next();
-    return res.json({DIY:'checking...'})
   } catch (error:any) {
     return res.status(401).json({error:error.message})
   }

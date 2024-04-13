@@ -22,7 +22,11 @@ const ProjectSchema:Schema = new Schema({
       type:Types.ObjectId,
       ref:'Task'
     }
-  ]
+  ],
+  manager:{
+    type:Types.ObjectId,
+    ref:'User'
+  }
 },{ timestamps:true }
 )
 

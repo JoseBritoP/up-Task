@@ -1,5 +1,6 @@
 import { Document, PopulatedDoc } from "mongoose";
 import { TaskType } from "./task";
+import { User } from "./user";
 
 
 export type ProjectType = Document & {
@@ -7,4 +8,5 @@ export type ProjectType = Document & {
   clientName:string
   description:string
   tasks: PopulatedDoc<TaskType & Document>[]
+  manager: PopulatedDoc<User & Document>
 }

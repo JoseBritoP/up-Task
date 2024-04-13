@@ -21,9 +21,10 @@ export const GETBYID = async (req:Request,res:Response) => {
 }
 
 export const POST = async (req:Request,res:Response) => {
+  const user = req.user;
   const data = req.data;
   try {
-    const newProject = await createProject(data);
+    const newProject = await createProject({userId:user?.id,data});
     return res.status(201).json(newProject)
   } catch (error:any) {
     return res.status(400).json({error:JSON.parse(error.message)})
