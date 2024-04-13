@@ -34,9 +34,10 @@ export const POST = async (req:Request,res:Response) => {
 }
 
 export const PUT = async (req:Request,res:Response) => {
+  const user = req.user
   const data = req.updateData;
   try {
-    const projectUpdated = await updateProject(data);
+    const projectUpdated = await updateProject(data,user?.id);
     return res.status(200).json(projectUpdated)
   } catch (error:any) {
     return res.status(400).json({error:JSON.parse(error.message)})
@@ -50,9 +51,11 @@ export const PATCH = async (req:Request,res:Response) => {
 }
 
 export const DELETE = async (req:Request,res:Response) => {
+  const user = req.user
   const id  = req.paramsId
+
   try {
-    const projectDeleted = await deleteProject(id);
+    const projectDeleted = await deleteProject(id,user?.id);
     return res.status(200).json(projectDeleted);
   } catch (error:any) {
     return res.status(404).json({error:error.message});
