@@ -8,7 +8,7 @@ interface Props {
 }
 export const generateJWT = (payload:Props) =>{
   const token = jwt.sign(payload,process.env.JWT_SECRET!,{
-    expiresIn:'6m'
+    expiresIn:'180d'
   })
   return token
 }

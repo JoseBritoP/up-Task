@@ -1,9 +1,15 @@
 import type { Request,Response,NextFunction } from "express";
 import { AuthAccount, authLoginSchema, authSchema } from "../schema/auth";
+import jwt from "jsonwebtoken";
+import 'dotenv/config'
+import User from "../models/User";
+import { User as UserType } from "../typescript/types/user";
+
 declare global {
   namespace Express {
     interface Request {
-      body:AuthAccount
+      body:AuthAccount,
+      user?:UserType | null
     }
   }
 }
@@ -31,3 +37,24 @@ export const authLoginMiddleware = (req:Request,res:Response,next:NextFunction) 
     return res.status(400).json({error:JSON.parse(error.message)})
   }
 }
+
+export const authenticate = async (req:Request,res:Response,next:NextFunction) => {
+  try {
+  
+  if(!req.headers.authorization === undefined || req.headers.authorization?.split(' ')[1] === undefined) throw new Error(`Unauthorized`)
+    const token = req.headers.authorization?.split(' ')[1]
+
+    console.log(token);
+    const decoded = jwt.verify(token,process.env.JWT_SECRET!)
+    console.log(decoded)
+    if(typeof decoded === 'object' && decoded.id){
+      const user = await User.findById(decoded.id)
+      req.user = user
+      if(!user) throw new Error(`Invalid token`)
+    }
+    next();
+    return res.json({DIY:'checking...'})
+  } catch (error:any) {
+    return res.status(401).json({error:error.message})
+  }
+};
