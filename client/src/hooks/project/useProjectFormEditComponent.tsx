@@ -29,7 +29,7 @@ export default function useEditFormComponent({data}:EditProjectFormProps) {
       queryClient.invalidateQueries({queryKey:['projects']})
       queryClient.invalidateQueries({queryKey:['project',projectId]})
       toast.success('Project updated successfully')
-      navigate('/')
+      navigate('/projects')
     }
   });
 

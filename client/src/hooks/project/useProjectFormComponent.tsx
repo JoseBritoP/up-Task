@@ -22,7 +22,7 @@ export default function useFormComponent() {
     },
     onSuccess:(data)=>{
       toast.success(`${data.message}`)
-      navigate('/')
+      navigate('/projects')
     }
   });
   // const handleForm = async(formData:ProjectFormData) => {
