@@ -20,6 +20,7 @@ export default function useLoginForm() {
     },
     onSuccess: (data) => {
       toast.success(data.message);
+      localStorage.setItem('AUTH_TOKEN',data.token)
       reset();
     },
   });
