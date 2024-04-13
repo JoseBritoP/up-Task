@@ -1,5 +1,6 @@
 import type { Request,Response } from "express";
-import { confirmAccount, createAccount, loginAccount, requestConfirmationCode,forgotPassword } from "../controllers/auth";
+import { confirmAccount, createAccount, loginAccount, requestConfirmationCode,forgotPassword, validateToken } from "../controllers/auth";
+import { updatePassword } from "../controllers/auth/07 - updatePassword";
 
 export const GET = async (req:Request,res:Response) => {
   // try {
@@ -95,3 +96,25 @@ export const FORGETPASSWORD = async (req:Request,res:Response) => {
     return res.status(403).json({error:error.message})
   }
 };
+
+export const VALIDATETOKEN = async (req:Request,res:Response) => {
+  const { token } = req.params
+  try {
+    const tokenValid = await validateToken(token);
+    return res.status(200).json(tokenValid)
+  } catch (error:any) {
+    return res.status(403).json({error:error.message})
+  }
+};
+
+export const UPDATEPASSWORD = async (req:Request,res:Response) => {
+  
+  const { token } = req.params;
+  const data = req.body
+  try {
+    const resetPassword = await updatePassword({token,data})
+    return res.status(200).json(resetPassword)
+  } catch (error:any) {
+    return res.status(400).json({error:error.message})
+  }
+}
