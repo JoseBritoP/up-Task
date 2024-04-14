@@ -8,6 +8,9 @@ export const getProjects = async (userId:string) => {
     $or:[
       {
         manager:{$in:userId}
+      },
+      {
+        team:{$in:userId}
       }
     ]
   });
