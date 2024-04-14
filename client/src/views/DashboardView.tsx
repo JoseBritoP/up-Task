@@ -3,12 +3,16 @@ import { Link } from "react-router-dom"
 import { getProjects } from "../server/projectAPI"
 import ProjectCardContainer from "@/components/Card/project/ProjectCardContainer";
 
+
 export default function DashboardView() {
 
-  const { data } = useQuery({
+
+  const { data, isLoading } = useQuery({
     queryKey:['projects'],
     queryFn:getProjects
   });
+
+  if(isLoading) return <p>Loading...</p>
 
   return (
     <>

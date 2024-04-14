@@ -21,12 +21,14 @@ const idSchema = z.string({
   required_error:'The id is required'
 }).regex(/[^0-9]+/,{message:'Invalid ID'}).length(24,{message:'The id must have 24 characters'});
 
+const manager = z.string();
 
 export const projectSchema = z.object({
   _id:idSchema,
   projectName,
   clientName,
   description,
+  manager
 });
 
 export const projectsSchema = z.array(projectSchema)
