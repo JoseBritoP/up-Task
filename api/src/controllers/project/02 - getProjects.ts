@@ -34,6 +34,6 @@ export const getProject = async (id:string,userId?:string) => {
 
   if(!project) throw new Error(`Project not found ${id}`)
 
-  if( userId && project.manager.toString() !== userId.toString()) throw new Error('Unauthorized');
+  if( userId && project.manager.toString() !== userId.toString() && !project.team.includes(userId)) throw new Error('Unauthorized');
   return project
 }
