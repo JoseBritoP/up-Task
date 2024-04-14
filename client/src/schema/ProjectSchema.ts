@@ -38,6 +38,7 @@ export const projectWithTaskSchema = z.object({
   projectName,
   clientName,
   description,
+  manager,
   tasks:z.array(taskSchema) || []
 });
 

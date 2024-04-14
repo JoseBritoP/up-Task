@@ -13,7 +13,7 @@ export default function Header({user}:HeaderProps) {
     <header className="bg-gray-800 dark:bg-slate-950">
       <div className="max-w-screen-2xl mx-auto flex flex-row justify-between pl-5 pr-16 lg:px-0 items-center pb-5 lg:pb-0">
         <div className="w-64">
-          <Link to={'/'}>
+          <Link to={'/projects'}>
             <Logo/>
           </Link>
         </div>

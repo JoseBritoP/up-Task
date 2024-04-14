@@ -6,7 +6,6 @@ import ProjectCardContainer from "@/components/Card/project/ProjectCardContainer
 
 export default function DashboardView() {
 
-
   const { data, isLoading } = useQuery({
     queryKey:['projects'],
     queryFn:getProjects
