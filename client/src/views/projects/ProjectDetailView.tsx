@@ -7,6 +7,7 @@ import EditTaskContainer from '@/components/shared/task/EditTaskContainer';
 import TaskModalDetails from '@/components/Card/task/TaskModalDetails';
 import useAuth from '@/hooks/auth/useAuth';
 import { isManager } from '@/utils/policies';
+import { useMemo } from 'react';
 
 export default function ProjectDetailView() {
 
@@ -21,6 +22,8 @@ export default function ProjectDetailView() {
     queryFn:()=>getProject(projectId),
     retry:false
   })
+  
+  const canEdit = useMemo(()=>data?.manager === user?._id,[data,user])
 
   if(isError){
     <Navigate to={'/404'}></Navigate>
@@ -33,8 +36,6 @@ export default function ProjectDetailView() {
     <Navigate to={'/404'}></Navigate>
   }
 
-  console.log('data',data?._id)
-  console.log('user',user?._id)
 
   if(data && user)return (
     <article>
@@ -49,7 +50,7 @@ export default function ProjectDetailView() {
         )}
         <Link to={'/projects'} className='bg-slate-600 hover:bg-slate-500 dark:bg-cyan-700 dark:hover:bg-cyan-600 px-6 py-2 text-white text-xl font-semibold cursor-pointer transition-colors rounded-md text-center'>Back to Projects</Link>
       </nav>
-      {data && data.tasks && <TaskList tasks={data.tasks} userId={user._id}/>}
+      {data && data.tasks && <TaskList tasks={data.tasks} userId={user._id} canEdit={canEdit}/>}
       <AddTaskModal/>
       <EditTaskContainer/>
       <TaskModalDetails/>

@@ -9,9 +9,10 @@ import { toast } from 'react-toastify'
 
 interface TaskCardProps {
   task:Task,
-  userId:string
+  userId:string,
+  canEdit:boolean
 }
-export default function TaskCard({task,userId}:TaskCardProps) {
+export default function TaskCard({task,userId,canEdit}:TaskCardProps) {
 
 
   const params = useParams();
@@ -34,7 +35,7 @@ export default function TaskCard({task,userId}:TaskCardProps) {
   return (
     <li className='p-5 bg-white dark:bg-gray-700/60 border-2 border-slate-300 dark:border-slate-600 flex justify-between gap-3 rounded-md'>
       <div className='min-w-0 flex flex-col gap-y-4'>
-        <button className='text-xl font-semibold text-slate-600 dark:text-slate-300 text-left'>{task.name}</button>
+        <button className='text-xl font-semibold text-slate-600 dark:text-slate-300 text-left' onClick={()=>navigate(location.pathname+`?viewTask=${task._id}`)}>{task.name}</button>
         <p className='text-slate-500 dark:text-slate-300'>{task.description}</p>
       </div>
       <div className="flex shrink-0  gap-x-6">
@@ -51,6 +52,8 @@ export default function TaskCard({task,userId}:TaskCardProps) {
                   <button type='button' className='block px-3 py-1 text-sm leading-6 text-gray-900 dark:text-gray-300' 
                   onClick={()=>navigate(location.pathname+`?viewTask=${task._id}`)}> See Task</button>
                 </Menu.Item>
+                {canEdit && (
+                  <>
                 <Menu.Item>
                   <button type='button' className='block px-3 py-1 text-sm leading-6 text-gray-900 dark:text-gray-300'
                   onClick={()=>navigate(location.pathname+`?editTask=${task._id}`)} >Edit Task</button>
@@ -58,8 +61,10 @@ export default function TaskCard({task,userId}:TaskCardProps) {
                 <Menu.Item>
                   <button type='button' className='block px-3 py-1 text-sm leading-6 text-red-500 font-semibold'
                     onClick={()=>mutate({taskId:task._id,userId})}
-                  >Delete Task</button>
+                    >Delete Task</button>
                 </Menu.Item>
+                    </>
+                  )}
               </Menu.Items>
             </Transition>
         </Menu>

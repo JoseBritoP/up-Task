@@ -4,7 +4,8 @@ import TaskCard from './TaskCard'
 
 interface TaskListProps{
   tasks:Task[],
-  userId:string
+  userId:string,
+  canEdit:boolean
 }
 
 type GroupedTask = {
@@ -26,7 +27,7 @@ const statusStyles:{[key:string]:string} = {
   underReview: 'border-t-amber-400 dark:border-t-amber-500',
   completed: 'border-t-emerald-400 dark:border-t-emerald-500'
 }
-export default function TaskListContainer({tasks,userId}:TaskListProps) {
+export default function TaskListContainer({tasks,userId,canEdit}:TaskListProps) {
 
 
   const groupedTasks = tasks.reduce((acc, task) => {
@@ -46,7 +47,7 @@ export default function TaskListContainer({tasks,userId}:TaskListProps) {
               {tasks.length === 0 ? (
                   <li className="text-gray-500 text-center pt-3">No task</li>
               ) : (
-                  tasks.map(task => <TaskCard key={task._id} task={task} userId={userId} />)
+                  tasks.map(task => <TaskCard key={task._id} task={task} userId={userId} canEdit={canEdit}/>)
               )}
             </ul>
           </div>
