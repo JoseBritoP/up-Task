@@ -9,7 +9,7 @@ declare global {
   namespace Express {
     interface Request {
       body:AuthAccount,
-      user?:UserType | null
+      user:UserType
     }
   }
 }
@@ -46,6 +46,7 @@ export const authenticate = async (req:Request,res:Response,next:NextFunction) =
     const decoded = jwt.verify(token,process.env.JWT_SECRET!)
     if(typeof decoded === 'object' && decoded.id){
       const user = await User.findById(decoded.id).select('_id name email')
+      if(!user) throw new Error('Unauthenticate')
       req.user = user
       if(!user) throw new Error(`Invalid token`)
     }

@@ -1,5 +1,6 @@
 import Project from "../../models/Project";
 import Task from "../../models/Task";
+import User from "../../models/User";
 import { PatchTaskProps, UpdateTaskProps } from "../../typescript/interfaces/task";
 
 export const updateTask = async ({id,data}:UpdateTaskProps) => {
@@ -37,12 +38,17 @@ export const updateTaskStatus = async({id,data}:PatchTaskProps) => {
 
   if(project.manager.toString() !== data.userId.toString()) throw new Error(`Unauthorized`)
 
+  const user = await User.findById(data.userId);
+  if(!user) throw new Error('User not found')
   const taskUpdated = await Task.findByIdAndUpdate(id,data,{new:true})
-  
-  if(!task) throw new Error(`An error ocurred updating the status of the task`);
+  if(!taskUpdated) throw new Error('An error ocurred updating the status')
 
-  await task.save();
-
+  if(data.status === 'pending'){
+    taskUpdated.completedBy= null
+  } else {
+    taskUpdated.completedBy= user.id
+  }
+  await taskUpdated.save();
   return {
     message:'The status was successfully updated!',
     task:taskUpdated
