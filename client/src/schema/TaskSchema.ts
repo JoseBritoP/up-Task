@@ -20,16 +20,22 @@ export const taskSchema = z.object({
   userId:z.string().optional()
 })
 
+const completedBy = z.object({
+  _id:z.string(),
+  user:z.object({
+    _id:z.string(),
+    name:z.string(),
+    email:z.string()
+  }),
+  status
+})
+
 export const taskPrincipalSchema = z.object({
   name,
   description,
   project:z.string(),
   status,
-  completedBy: z.object({
-    _id:z.string(),
-    name:z.string(),
-    email:z.string().email()
-  }).nullable(),
+  completedBy:z.array(completedBy),
   createdAt:z.string().optional(),
   updatedAt:z.string().optional(),
 });
