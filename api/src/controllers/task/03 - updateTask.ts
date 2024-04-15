@@ -43,11 +43,12 @@ export const updateTaskStatus = async({id,data}:PatchTaskProps) => {
   const taskUpdated = await Task.findByIdAndUpdate(id,data,{new:true})
   if(!taskUpdated) throw new Error('An error ocurred updating the status')
 
-  if(data.status === 'pending'){
-    taskUpdated.completedBy= null
-  } else {
-    taskUpdated.completedBy= user.id
+  const info = {
+    user : user.id,
+    status:data.status
   }
+  taskUpdated.completedBy.push(info)
+ 
   await taskUpdated.save();
   return {
     message:'The status was successfully updated!',

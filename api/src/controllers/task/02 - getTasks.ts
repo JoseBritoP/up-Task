@@ -22,7 +22,11 @@ export const getTask = async (id:string) => {
   const task = await Task.findById(id)
   .populate({
     path:'completedBy',
-    select: 'id name email'
+    select: 'user status',
+    populate:{
+      path:'user',
+      select:'id name email'
+    }
   });
   if(!task) throw new Error(`Task not found ${id}`);
   return task
