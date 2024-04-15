@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { TaskFormData } from 'schema/TaskSchema';
 import { updateTask } from '../../server/taskAPI';
 import { EditTaskModalProps } from 'typescript/interfaces/Task'
+import useAuth from '../auth/useAuth';
 
 export default function useEditFormTask({data}:EditTaskModalProps) {
  
@@ -12,6 +13,7 @@ export default function useEditFormTask({data}:EditTaskModalProps) {
   const projectId = params.projectId!
   const navigate = useNavigate();
   const taskId = data._id
+  const {data:user} = useAuth();
   const initialValues:TaskFormData = {
     name:data.name,
     description:data.description,
@@ -37,10 +39,12 @@ export default function useEditFormTask({data}:EditTaskModalProps) {
   });
 
   const handleForm = (formData:TaskFormData) => {
+    const userId = user?._id
     const data = {
       taskId,
       formData,
-      projectId
+      projectId,
+      userId
     }
     mutate(data);
   }

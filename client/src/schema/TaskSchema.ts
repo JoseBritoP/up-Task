@@ -16,7 +16,8 @@ export const taskSchema = z.object({
   _id:z.string(),
   name,
   description,
-  status
+  status,
+  userId:z.string().optional()
 })
 
 export const taskPrincipalSchema = z.object({
@@ -28,9 +29,19 @@ export const taskPrincipalSchema = z.object({
   updatedAt:z.string().optional(),
 });
 
+export const createTaskSchema = z.object({
+  _id:z.string(),
+  name,
+  description,
+  status,
+  userId:z.string().optional()
+})
+
+export type TaskFormV2 = z.infer<typeof createTaskSchema>
+
 export const tasksSchema = z.array(taskSchema);
 export type TaskStatus = z.infer<typeof status>
 export type TaskPrincipal = z.infer<typeof taskPrincipalSchema>
 export type Task = z.infer<typeof taskSchema>;
 export type Tasks = z.infer<typeof tasksSchema>;
-export type TaskFormData = Pick<Task,'name'| 'description'>;
+export type TaskFormData = Pick<TaskFormV2,'name'| 'description'| 'userId'>;

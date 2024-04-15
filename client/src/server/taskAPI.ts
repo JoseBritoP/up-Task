@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { TaskPrincipal, taskPrincipalSchema } from "../schema/TaskSchema";
 import api from "../lib/axios"
@@ -7,16 +8,22 @@ import { updateTaskFn } from "typescript/interfaces/Task";
 type createTaskProps = {
   name:string,
   description:string
-  project:string
+  project:string,
+  userId:string | undefined
 }
 export const createTask = async(formData:createTaskProps) => {
   try {
     const { data } = await api.post(`/task`,formData);
+    console.log(data)
     return data
   } catch (error:any) {
+    console.log(error.response.data)
     if(isAxiosError(error) && error.response){
-      const errorMessage = error.response.data.error.issues.map((issue:{message:'string'})=>issue.message)
-      throw new Error(errorMessage);
+      if(error.response.data.error.hasOwnProperty('issues')){
+        const errorMessage = error.response.data.error.issues.map((issue:{message:'string'})=>issue.message)
+        throw new Error(errorMessage);
+      }
+      throw new Error(error.response.data.error)
     }
   }
 }

@@ -4,13 +4,17 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { TaskFormData } from "schema/TaskSchema";
 import { createTask } from "../../server/taskAPI";
+import useAuth from "../auth/useAuth";
 
 export default function useFormTaskComponent() {
+
+  const {data:user} = useAuth();
 
   const navigate = useNavigate();
   const initialValues:TaskFormData = {
     name:'',
-    description:''
+    description:'',
+    userId:''
   }
 
   const { projectId } = useParams();
@@ -31,10 +35,12 @@ export default function useFormTaskComponent() {
     }
   });
   const handleForm = (formData:TaskFormData) => {
+    const userId = user?._id
     const data = {
       name:formData.name,
       description:formData.description,
-      project:projectId!
+      project:projectId!,
+      userId: userId && userId
     }
     mutation.mutate(data);
   }
