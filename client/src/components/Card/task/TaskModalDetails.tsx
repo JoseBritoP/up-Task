@@ -7,8 +7,11 @@ import { toast } from "react-toastify";
 import { formatDate } from "@/utils/index";
 import { statusTranslations } from "@/locales/qs";
 import { TaskStatus } from "@/schema/TaskSchema";
+import useAuth from "@/hooks/auth/useAuth";
 
 export default function TaskModalDetails() {
+
+  const { data:user } = useAuth();
   const params = useParams();
   const projectId = params.projectId!
   const navigate = useNavigate()
@@ -40,9 +43,11 @@ export default function TaskModalDetails() {
 
   const handleChange = (e:React.ChangeEvent<HTMLSelectElement> ) =>{
     const status = e.target.value as TaskStatus;
+    const userId = user?._id
     const data = {
       taskId,
-      status
+      status,
+      userId
     }
     mutate(data);
     navigate(location.pathname,{replace:true})

@@ -53,7 +53,7 @@ export const updateTask = async (formData:updateTaskFn) => {
   }
 };
 
-export const deleteTask = async ({taskId,userId}:{taskId:string,userId:string}) => {
+export const deleteTask = async ({taskId,userId}:{taskId:string,userId:string }) => {
   try {
     const { data } = await api.delete(`/task/${taskId}/${userId}`);
     return data
@@ -66,10 +66,13 @@ export const deleteTask = async ({taskId,userId}:{taskId:string,userId:string}) 
 
 type Status = TaskPrincipal['status']
 
-export const taskStatus = async ({taskId,status}:{taskId:string,status:Status}) => {
+export const taskStatus = async ({taskId,status,userId}:{taskId:string,status:Status,userId:string | undefined}) => {
+  console.log(userId)
+  
   try {
     const { data } = await api.patch(`/task/${taskId}`,{
-      status
+      status,
+      userId
     });
     return data
   } catch (error:any) {
