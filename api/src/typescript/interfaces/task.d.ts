@@ -3,7 +3,8 @@ import { TaskStatus } from "../types/task"
 export interface CreateTaskProps {
   name:string
   description:string
-  project:string
+  project:string,
+  userId:string
 }
 
 export interface UpdateTaskProps {
@@ -11,13 +12,15 @@ export interface UpdateTaskProps {
   data:{
     name?:string
     description?:string
-    status?:TaskStatus
+    status?:TaskStatus,
+    userId:string
   }
 }
 
 export interface PatchTaskProps {
   id:string,
   data:{
+    userId:string
     status:TaskStatus
   }
 }

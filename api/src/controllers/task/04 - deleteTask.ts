@@ -1,7 +1,8 @@
 import Task from "../../models/Task";
 import Project from "../../models/Project";
+import User from "../../models/User";
 
-export const deleteTask = async (id:string) => {
+export const deleteTask = async ({id,userId}:{id:string,userId:string}) => {
 
   const task = await Task.findOne({
     _id:id
@@ -17,11 +18,14 @@ export const deleteTask = async (id:string) => {
     _id:task.project?._id
   })
   if(!project) throw new Error(`Proyect not found`);
-  project.tasks = project.tasks.filter((task)=>{
-    return task.toString() !== id
-  })
+  const user = await User.findById(userId);
+  if(!user) throw new Error(`User not found`);
+
+  if(project.manager.toString() !== userId.toString()) throw new Error(`Unauthorized`)
+
+  project.tasks = project.tasks.filter((task)=> task.toString() !== id)
   await project.save();
 
   const deletedTask = await task.deleteOne();
-  return deletedTask;
+  return deletedTask
 };

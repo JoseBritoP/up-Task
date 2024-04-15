@@ -50,6 +50,7 @@ export const postTaskCheck = (req:Request,res:Response,next:NextFunction) => {
     req.taskData = result.data
     next();
   } catch (error:any) {
+    console.log('Error creat...')
     return res.status(400).json({error:JSON.parse(error.message)});
   }
 }
@@ -80,3 +81,7 @@ export const patchTaskStatus = (req:Request,res:Response,next:NextFunction) => {
     return res.status(400).json({error:JSON.parse(error.message)});
   }
 }
+
+export const hasAuthorization = (req:Request,res:Response,next:NextFunction) => {
+  
+};

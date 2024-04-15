@@ -15,6 +15,6 @@ taskRouter.get('/:id',checkId,TaskHandler.GETBYID)
 taskRouter.post('/',postTaskCheck,TaskHandler.POST)
 taskRouter.put('/:id',putTaskCheck,TaskHandler.PUT)
 taskRouter.patch('/:id',patchTaskStatus,TaskHandler.PATCH)
-taskRouter.delete('/:id',checkId,TaskHandler.DELETE)
+taskRouter.delete('/:id/:userId',checkId,TaskHandler.DELETE)
 
 export default taskRouter

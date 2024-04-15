@@ -58,8 +58,9 @@ export const PATCH = async (req:Request,res:Response) => {
 
 export const DELETE = async (req:Request,res:Response) => {
   const id = req.paramsId
+  const { userId } = req.params
   try {
-    const taskDeleted = await deleteTask(id);
+    const taskDeleted = await deleteTask({id,userId});
     return res.status(200).json(taskDeleted);
   } catch (error:any) {
     return res.status(404).json({error:error.message});

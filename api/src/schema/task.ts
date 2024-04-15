@@ -21,7 +21,8 @@ const status = z.enum(['pending','onHold','inProgress','underReview','completed'
 export const taskSchema = z.object({
   name,
   description,
-  project:projectIdSchema
+  project:projectIdSchema,
+  userId:z.string()
 })
 
 export const updateTaskSchema = z.object({
@@ -29,13 +30,15 @@ export const updateTaskSchema = z.object({
   data:z.object({
     name:name.optional(),
     description:description.optional(),
-    status:status.optional()
+    status:status.optional(),
+    userId:z.string()
   })
 });
 
 export const patchTaskStatusSchema = z.object({
   id:idSchema,
   data:z.object({
+    userId:z.string(),
     status
   })
 });
