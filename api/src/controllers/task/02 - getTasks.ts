@@ -19,7 +19,11 @@ export const getTasksInProject = async (projectId:string) => {
 }; 
 
 export const getTask = async (id:string) => {
-  const task = await Task.findById(id);
+  const task = await Task.findById(id)
+  .populate({
+    path:'completedBy',
+    select: 'id name email'
+  });
   if(!task) throw new Error(`Task not found ${id}`);
   return task
 };

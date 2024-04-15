@@ -58,6 +58,8 @@ export default function TaskModalDetails() {
     return <Navigate to={`/projects/${projectId}`}/>
   }
 
+  console.log(data)
+
   if(data) return (
     <>
       <Transition appear show={show} as={Fragment}>
@@ -97,6 +99,11 @@ export default function TaskModalDetails() {
                     {data.name}
                   </Dialog.Title>
                   <p className="text-lg text-slate-500 dark:text-gray-200 mb-2">Description:  <span className="text-base">{data.description}</span></p>
+                  {data.completedBy && (
+                    <p className="font-semibold"> Status updated by {" "}
+                      <span className="font-bold text-slate-600 dark:text-slate-300">{data.completedBy.name}</span>
+                    </p>
+                  )}
                   <div className="my-5 space-y-3">
                     <label htmlFor="status" className="font-bold">Current status: </label>
                     <select name="status" id="status" onChange={handleChange} className="w-full p-3 bg-white dark:bg-slate-700 rounded-md dark:text-gray-100" defaultValue={data.status}>

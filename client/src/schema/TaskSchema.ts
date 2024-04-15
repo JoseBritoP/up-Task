@@ -25,6 +25,11 @@ export const taskPrincipalSchema = z.object({
   description,
   project:z.string(),
   status,
+  completedBy: z.object({
+    _id:z.string(),
+    name:z.string(),
+    email:z.string().email()
+  }).nullable(),
   createdAt:z.string().optional(),
   updatedAt:z.string().optional(),
 });
