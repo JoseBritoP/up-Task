@@ -6,6 +6,8 @@ export type TaskType = Document & {
   name:string
   description:string
   project: Types.ObjectId,
-  status:TaskStatus,
-  completedBy:Types.ObjectId | null
+  completedBy:{
+    user:Types.ObjectId,
+    status:TaskStatus
+  }[]
 }
