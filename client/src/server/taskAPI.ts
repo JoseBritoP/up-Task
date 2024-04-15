@@ -53,9 +53,9 @@ export const updateTask = async (formData:updateTaskFn) => {
   }
 };
 
-export const deleteTask = async (taskId:string) => {
+export const deleteTask = async ({taskId,userId}:{taskId:string,userId:string}) => {
   try {
-    const { data } = await api.delete(`/task/${taskId}`);
+    const { data } = await api.delete(`/task/${taskId}/${userId}`);
     return data
   } catch (error:any) {
     if(isAxiosError(error) && error.response){

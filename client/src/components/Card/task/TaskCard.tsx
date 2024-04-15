@@ -8,9 +8,11 @@ import { deleteTask } from '@/server/taskAPI'
 import { toast } from 'react-toastify'
 
 interface TaskCardProps {
-  task:Task
+  task:Task,
+  userId:string
 }
-export default function TaskCard({task}:TaskCardProps) {
+export default function TaskCard({task,userId}:TaskCardProps) {
+
 
   const params = useParams();
   const projectId = params.projectId!
@@ -20,7 +22,8 @@ export default function TaskCard({task}:TaskCardProps) {
 
   const { mutate } = useMutation({
     mutationFn:deleteTask,
-    onError:()=>{
+    onError:(error)=>{
+      if(error.message) return toast.error(error.message)
       toast.error(`Error deleting the task`)
     },
     onSuccess:()=>{
@@ -54,7 +57,7 @@ export default function TaskCard({task}:TaskCardProps) {
                 </Menu.Item>
                 <Menu.Item>
                   <button type='button' className='block px-3 py-1 text-sm leading-6 text-red-500 font-semibold'
-                    onClick={()=>mutate(task._id)}
+                    onClick={()=>mutate({taskId:task._id,userId})}
                   >Delete Task</button>
                 </Menu.Item>
               </Menu.Items>
