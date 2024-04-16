@@ -1,5 +1,6 @@
 import mongoose,{ Schema, Types } from "mongoose";
 import { ProjectType } from "../typescript/types/project";
+import Task from "./Task";
 
 const ProjectSchema:Schema = new Schema({
   projectName:{
@@ -35,6 +36,12 @@ const ProjectSchema:Schema = new Schema({
   ],
 },{ timestamps:true }
 )
+
+ProjectSchema.pre('deleteOne',{document:true,query:false},async function(){
+  const projectId = this._id;
+  if(!projectId) return;
+  await Task.deleteMany({project:projectId})
+})
 
 const Project = mongoose.model<ProjectType>('Project',ProjectSchema)
 export default Project
