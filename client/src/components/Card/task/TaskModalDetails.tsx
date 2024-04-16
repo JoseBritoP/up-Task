@@ -59,8 +59,6 @@ export default function TaskModalDetails() {
     return <Navigate to={`/projects/${projectId}`}/>
   }
 
-  console.log(data)
-
   if(data) return (
     <>
       <Transition appear show={show} as={Fragment}>
@@ -120,7 +118,7 @@ export default function TaskModalDetails() {
                       ))}
                     </select>
                   </div>
-                  <NotePanel/>
+                  <NotePanel notes={data.notes}/>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
