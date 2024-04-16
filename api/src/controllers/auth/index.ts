@@ -7,6 +7,8 @@ import { validateToken } from "./06 - validateToken";
 import { getAuthUser } from "./08 - getAuthUser";
 import { updateProfile } from "./09 - updateProfile";
 import { updateProfilePassword } from "./10 - updatePassword";
+import { checkProfilePassword } from "./11 - checkPassword";
+
 export {
-  createAccount,confirmAccount,loginAccount,requestConfirmationCode,forgotPassword,validateToken, getAuthUser,updateProfile,updateProfilePassword
+  createAccount,confirmAccount,loginAccount,requestConfirmationCode,forgotPassword,validateToken, getAuthUser,updateProfile,updateProfilePassword,checkProfilePassword
 }

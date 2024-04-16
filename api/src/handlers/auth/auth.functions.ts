@@ -1,5 +1,5 @@
 import type { Request,Response } from "express";
-import { confirmAccount, createAccount, loginAccount, requestConfirmationCode,forgotPassword, validateToken,getAuthUser, updateProfile, updateProfilePassword } from "../../controllers/auth";
+import { confirmAccount, createAccount, loginAccount, requestConfirmationCode,forgotPassword, validateToken,getAuthUser, updateProfile, updateProfilePassword, checkProfilePassword } from "../../controllers/auth";
 import { updatePassword } from "../../controllers/auth/07 - updatePassword";
 
 export const GET = async (req:Request,res:Response) => {
@@ -123,6 +123,17 @@ export const UPDATEPASSWORD = async (req:Request,res:Response) => {
   try {
     const resetPassword = await updatePassword({token,data})
     return res.status(200).json(resetPassword)
+  } catch (error:any) {
+    return res.status(400).json({error:error.message})
+  }
+}
+
+export const CHECKPASSWORD = async (req:Request,res:Response) => {
+  const userId = req.user._id
+  const data = req.body
+  try {
+    const check = await checkProfilePassword({userId,data})
+    return res.status(200).json(check)
   } catch (error:any) {
     return res.status(400).json({error:error.message})
   }

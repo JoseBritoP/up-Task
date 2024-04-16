@@ -23,3 +23,4 @@ authRouter.get('/user',authenticate,AuthHandler.GET);
 // Profile
 authRouter.put('/user/profile/:profileId',authenticate,AuthHandler.PUT);
 authRouter.patch('/user/profile/:profileId',authenticate,AuthHandler.PATCH);
+authRouter.post('/user/profile/check-password',authenticate,AuthHandler.CHECKPASSWORD);
