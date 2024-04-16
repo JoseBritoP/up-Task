@@ -1,8 +1,14 @@
 import { Request,Response } from "express";
-import { createNote } from "../../controllers/note";
+import { createNote, getNotes } from "../../controllers/note";
 
 export async function GET (req:Request,res:Response){
-  return res.json({DIY:`Get notes`})
+  const taskId = req.task._id
+  try {
+    const notes = await getNotes(taskId);
+    return res.status(200).json(notes);
+  } catch (error:any) {
+    return res.status(404).json({error:error.message})
+  }
 }
 export async function GETBYID (req:Request,res:Response){
   return res.json({DIY:`Get notes`})

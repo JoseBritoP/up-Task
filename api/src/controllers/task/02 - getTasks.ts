@@ -27,6 +27,14 @@ export const getTask = async (id:string) => {
       path:'user',
       select:'id name email'
     }
+  })
+  .populate({
+    path:'notes',
+    select:'_id content createdBy createdAt updatedAt',
+    populate:{
+      path:'createdBy',
+      select:'_id name email'
+    }
   });
   if(!task) throw new Error(`Task not found ${id}`);
   return task
