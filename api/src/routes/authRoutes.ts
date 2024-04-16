@@ -17,6 +17,8 @@ authRouter.post('/create-account',createAccountMiddleware,AuthHandler.POSTREGIST
 authRouter.post('/login',authLoginMiddleware,AuthHandler.POSTLOGIN);
 authRouter.post('/request-code',AuthHandler.REQUESTCODE);
 authRouter.post('/forgot-password',AuthHandler.FORGETPASSWORD)
-authRouter.patch('/:id',AuthHandler.PATCH);
 authRouter.delete('/:id',AuthHandler.DELETE);
 authRouter.get('/user',authenticate,AuthHandler.GET);
+
+// Profile
+authRouter.put('/user/profile/:profileId',authenticate,AuthHandler.PUT);

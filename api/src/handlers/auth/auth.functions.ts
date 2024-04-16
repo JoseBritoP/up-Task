@@ -1,5 +1,5 @@
 import type { Request,Response } from "express";
-import { confirmAccount, createAccount, loginAccount, requestConfirmationCode,forgotPassword, validateToken,getAuthUser } from "../../controllers/auth";
+import { confirmAccount, createAccount, loginAccount, requestConfirmationCode,forgotPassword, validateToken,getAuthUser, updateProfile } from "../../controllers/auth";
 import { updatePassword } from "../../controllers/auth/07 - updatePassword";
 
 export const GET = async (req:Request,res:Response) => {
@@ -53,13 +53,15 @@ export const POSTLOGIN = async (req:Request,res:Response) => {
 }; 
 
 export const PUT = async (req:Request,res:Response) => {
-  // const data = req.updateData;
-  // try {
-  //   const projectUpdated = await updateProject(data);
-  //   return res.status(200).json(projectUpdated)
-  // } catch (error:any) {
-  //   return res.status(400).json({error:JSON.parse(error.message)})
-  // }
+  const data = req.body;
+  const { profileId } = req.params;
+
+  try {
+    const profile = await updateProfile({profileId,data});
+    return res.status(200).json(profile)
+  } catch (error:any) {
+    return res.status(400).json({error:error.message})
+  }
 }
 
 export const PATCH = async (req:Request,res:Response) => {

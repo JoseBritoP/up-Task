@@ -5,6 +5,7 @@ import { requestConfirmationCode } from './04 - requestConfirmationCode'
 import { forgotPassword } from "./05 - forgotPassword";
 import { validateToken } from "./06 - validateToken";
 import { getAuthUser } from "./08 - getAuthUser";
+import { updateProfile } from "./09 - updateProfile";
 export {
-  createAccount,confirmAccount,loginAccount,requestConfirmationCode,forgotPassword,validateToken, getAuthUser
+  createAccount,confirmAccount,loginAccount,requestConfirmationCode,forgotPassword,validateToken, getAuthUser,updateProfile
 }
