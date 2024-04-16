@@ -30,7 +30,7 @@ export const getTask = async (id:string) => {
   })
   .populate({
     path:'notes',
-    select:'_id content createdBy createdAt updatedAt',
+    select:'_id content createdBy createdAt updatedAt task',
     populate:{
       path:'createdBy',
       select:'_id name email'

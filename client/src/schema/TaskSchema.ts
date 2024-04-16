@@ -38,7 +38,8 @@ const note = z.object({
     name:z.string(),
     email:z.string()
   }),
-  createdAt:z.string()
+  createdAt:z.string(),
+  task:z.string()
 })
 
 export type Note = z.infer<typeof note>
