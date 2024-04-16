@@ -1,6 +1,9 @@
 import ErrorMessage from "@/components/shared/ErrorMessage";
 import { AuthenticateType, ProfileForm as ProfileFormType } from "@/schema/AuthSchema";
+import { changeProfileInfo } from "@/server/profileAPI";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 interface ProfileFormProps {
   data:AuthenticateType
@@ -13,8 +16,25 @@ export default function ProfileForm({ data }:ProfileFormProps) {
     formState: { errors },
   } = useForm<ProfileFormType>({ defaultValues: data });
 
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn:changeProfileInfo,
+    onError:(error)=>{
+      toast.error(error.message)
+    },
+    onSuccess:(data)=>{
+      toast.success(data.message);
+      queryClient.invalidateQueries({queryKey:['user']})
+    }
+  })
+
   const handleEditProfile = (formData:ProfileFormType) => {
-    console.log(formData)
+    const dataProp = {
+      profileId:data._id,
+      formData
+    }
+    mutate(dataProp)
   };
 
   return (
