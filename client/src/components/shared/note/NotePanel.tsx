@@ -1,9 +1,15 @@
+import NotesContainer from '@/components/Card/notes/NotesContainer'
 import AddNoteForm from '@/components/form/note/AddNoteForm'
+import { Note } from '@/schema/TaskSchema'
 
-export default function NotePanel() {
+interface NotePanelProps {
+  notes:Note[]
+}
+export default function NotePanel({notes}:NotePanelProps) {
   return (
     <>
       <AddNoteForm/>
+      <NotesContainer notes={notes}/>
     </>
   )
 }
