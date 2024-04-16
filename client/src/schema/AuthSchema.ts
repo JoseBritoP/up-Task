@@ -18,6 +18,14 @@ export const AuthenticateSchema = z.object({
   email
 })
 
+export const ProfileNewPassword = z.object({
+  currentPassword:password,
+  repeatPassword,
+  newPassword:password
+})
+
+export type ProfileNewPasswordFormData = z.infer<typeof ProfileNewPassword>
+
 export type Auth = z.infer<typeof AuthSchema>
 export type LoginForm = Pick<Auth,'email'| 'password'>
 export type ResetPassword = Pick<Auth,'password'| 'repeatPassword'>
