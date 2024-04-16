@@ -30,12 +30,26 @@ const completedBy = z.object({
   status
 })
 
+const note = z.object({
+  _id:z.string(),
+  content:z.string(),
+  createdBy:z.object({
+    _id:z.string(),
+    name:z.string(),
+    email:z.string()
+  }),
+  createdAt:z.string()
+})
+
+export type Note = z.infer<typeof note>
+
 export const taskPrincipalSchema = z.object({
   name,
   description,
   project:z.string(),
   status,
   completedBy:z.array(completedBy),
+  notes:z.array(note),
   createdAt:z.string().optional(),
   updatedAt:z.string().optional(),
 });

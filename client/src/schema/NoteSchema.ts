@@ -13,8 +13,10 @@ const noteSchema = z.object({
   _id,
   content,
   createdBy,
-  task
+  task,
+  createdAt:z.string()
 });
 
 export type NoteType = z.infer<typeof noteSchema>;
 export type NoteFormData = Pick<NoteType, 'content'>;
+export type NotesType = NoteType[]
