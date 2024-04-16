@@ -54,10 +54,10 @@ export default function NewPasswordForm({token}:{token:string}) {
           <label htmlFor="password" className="font-normal text-2xl">Password</label>
 
           <input
-          id="password"
+            id="password"
             type="password"
             placeholder="Password"
-            className="w-full p-3  border-gray-300 border"
+            className="w-full p-3 dark:text-black border-gray-300 border"
             {...register("password", {
               required: "The password is required",
               minLength: {
@@ -78,7 +78,7 @@ export default function NewPasswordForm({token}:{token:string}) {
             id="repeatPassword"
             type="password"
             placeholder="Repeat password"
-            className="w-full p-3  border-gray-300 border"
+            className="w-full p-3 dark:text-black border-gray-300 border"
             {...register("repeatPassword", {
               required: "Repeat your password",
               validate: (value) =>

@@ -19,7 +19,7 @@ export default function LoginForm() {
             id="email"
             type="email"
             placeholder="Your email"
-            className="w-full p-3  border-gray-300 border rounded-md"
+            className="w-full p-3 dark:text-black border-gray-300 border rounded-md"
             {...register("email", {
               required: "The email is required",
               pattern: {
@@ -39,7 +39,7 @@ export default function LoginForm() {
             id="password"
             type="password"
             placeholder="Your password"
-            className="w-full p-3  border-gray-300 border rounded-md"
+            className="w-full p-3 dark:text-black border-gray-300 border rounded-md"
             {...register("password", {
               required: "The password is required",
             })}

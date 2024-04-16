@@ -20,7 +20,7 @@ export default function RegisterForm() {
             id="email"
             type="email"
             placeholder="Email"
-            className="w-full p-3 rounded-md border-gray-300 border"
+            className="w-full p-3 rounded-md dark:text-black border-gray-300 border"
             {...register("email", {
               required: "The email is required",
               pattern: {
@@ -40,7 +40,7 @@ export default function RegisterForm() {
             id="name"
             type="text"
             placeholder="Your name"
-            className="w-full rounded-md p-3 border-gray-300 border"
+            className="w-full rounded-md p-3 dark:text-black border-gray-300 border"
             {...register("name", {
               required: "The name is required",
             })}
@@ -57,7 +57,7 @@ export default function RegisterForm() {
             id="password"
             type="password"
             placeholder="Password de Registro"
-            className="w-full p-3 rounded-md border-gray-300 border"
+            className="w-full p-3 rounded-md dark:text-black border-gray-300 border"
             {...register("password", {
               required: "The password is required",
               minLength: {

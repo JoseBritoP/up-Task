@@ -17,7 +17,7 @@ export default function TaskForm({errors, register} : TaskFormProps) {
           id="name"
           type="text"
           placeholder="Task name"
-          className="w-full p-3  border-gray-300 rounded-md border"
+          className="w-full p-3 dark:text-black border-gray-300 rounded-md border"
           {...register("name", {
               required: "The task name is required",
           })}
@@ -32,7 +32,7 @@ export default function TaskForm({errors, register} : TaskFormProps) {
         <textarea
           id="description"
           placeholder="Description"
-          className="w-full p-3  border-gray-300 rounded-md border"
+          className="w-full p-3 dark:text-black border-gray-300 rounded-md border"
           {...register("description", {
               required: "The description is required"
           })}
