@@ -1,5 +1,5 @@
 import type { Request,Response } from "express";
-import { confirmAccount, createAccount, loginAccount, requestConfirmationCode,forgotPassword, validateToken,getAuthUser, updateProfile } from "../../controllers/auth";
+import { confirmAccount, createAccount, loginAccount, requestConfirmationCode,forgotPassword, validateToken,getAuthUser, updateProfile, updateProfilePassword } from "../../controllers/auth";
 import { updatePassword } from "../../controllers/auth/07 - updatePassword";
 
 export const GET = async (req:Request,res:Response) => {
@@ -55,7 +55,6 @@ export const POSTLOGIN = async (req:Request,res:Response) => {
 export const PUT = async (req:Request,res:Response) => {
   const data = req.body;
   const { profileId } = req.params;
-
   try {
     const profile = await updateProfile({profileId,data});
     return res.status(200).json(profile)
@@ -65,9 +64,16 @@ export const PUT = async (req:Request,res:Response) => {
 }
 
 export const PATCH = async (req:Request,res:Response) => {
-  const { id } = req.params
+
+  const { profileId } = req.params;
+  const data = req.body
+  try {
+    const profilePassword = await updateProfilePassword({profileId,data});
+    return res.status(200).json(profilePassword)
+  } catch (error:any) {
+    return res.status(400).json({error:error.message})
+  }
   
-  res.json({DIY: `PATCH project ${id}`})
 }
 
 export const DELETE = async (req:Request,res:Response) => {

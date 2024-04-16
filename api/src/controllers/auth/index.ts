@@ -6,6 +6,7 @@ import { forgotPassword } from "./05 - forgotPassword";
 import { validateToken } from "./06 - validateToken";
 import { getAuthUser } from "./08 - getAuthUser";
 import { updateProfile } from "./09 - updateProfile";
+import { updateProfilePassword } from "./10 - updatePassword";
 export {
-  createAccount,confirmAccount,loginAccount,requestConfirmationCode,forgotPassword,validateToken, getAuthUser,updateProfile
+  createAccount,confirmAccount,loginAccount,requestConfirmationCode,forgotPassword,validateToken, getAuthUser,updateProfile,updateProfilePassword
 }
