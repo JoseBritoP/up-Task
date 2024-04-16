@@ -6,6 +6,7 @@ import { AuthView, ConfirmAccount, NewPassword, ResetPassword,RequestNewCode } f
 import { CreateProjectView, EditProjectView, ProjectDetailView, ProjectTeamView } from "./views/projects";
 import { ChangePasswordView, ProfileView } from "./views/profile";
 import ProfileLayout from "./layouts/ProfileLayout";
+import NotFound from "./views/NotFound";
 
 export default function Router(){
   return (
@@ -28,6 +29,9 @@ export default function Router(){
           <Route path="/auth/request-code" element={<RequestNewCode/>}/>
           <Route path="/auth/forget-password" element={<ResetPassword/>}/>
           <Route path="/auth/new-password" element={<NewPassword/>}/>
+        </Route>
+        <Route element={<AuthLayout/>}>
+          <Route path="/*" element={<NotFound/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
