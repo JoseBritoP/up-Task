@@ -2,6 +2,7 @@ import { Request,Response,NextFunction,ErrorRequestHandler, Router } from "expre
 import { projectRouter } from "./projectRoutes";
 import taskRouter from "./taskRoutes";
 import { authRouter } from "./authRoutes";
+import { noteRouter } from "./noteRoutes";
 
 const mainRouter = Router();
 
@@ -13,8 +14,8 @@ const mainRouter = Router();
 
 mainRouter.use('/api/project',projectRouter)
 mainRouter.use('/api/task',taskRouter);
-mainRouter.use('/api/auth',authRouter)
-
+mainRouter.use('/api/auth',authRouter);
+mainRouter.use('/api/note',noteRouter);
 mainRouter.use((req, res, next) => {
   const error:any = new Error(`La ruta ${req.originalUrl} con el método ${req.method} no está implementada`);
   error.status = 404;
