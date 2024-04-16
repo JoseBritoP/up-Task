@@ -42,6 +42,12 @@ export const TaskSchema:Schema = new Schema({
         default:taskStatus.PENDING
       }
     }
+  ],
+  notes:[
+    {
+      type:Types.ObjectId,
+      ref:'Note'
+    }
   ]
 },{ timestamps:true }
 )
