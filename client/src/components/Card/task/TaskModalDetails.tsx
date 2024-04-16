@@ -8,6 +8,7 @@ import { formatDate } from "@/utils/index";
 import { statusTranslations } from "@/locales/qs";
 import { TaskStatus } from "@/schema/TaskSchema";
 import useAuth from "@/hooks/auth/useAuth";
+import NotePanel from "@/components/shared/note/NotePanel";
 
 export default function TaskModalDetails() {
 
@@ -99,14 +100,18 @@ export default function TaskModalDetails() {
                     {data.name}
                   </Dialog.Title>
                   <p className="text-lg text-slate-500 dark:text-gray-200 mb-2">Description:  <span className="text-base">{data.description}</span></p>
-                  <p className="text-lg text-slate-500 dark:text-slate-200 mb-2">History</p>
-                  <ul className="list-decimal">
-                    {data.completedBy.map(({_id,status,user})=>(
-                      <li key={_id} className="font-semibold">{status} {' by '} 
-                      <span className="font-bold text-slate-600 dark:text-slate-300">{user.name}</span>
-                    </li>
-                    ))}
-                  </ul>
+                  {data.completedBy.length !== 0 && (
+                    <>
+                      <p className="text-lg text-slate-500 dark:text-slate-200 mb-2">History</p>
+                      <ul className="list-decimal">
+                        {data.completedBy.map(({_id,status,user})=>(
+                          <li key={_id} className="font-semibold">{status} {' by '} 
+                          <span className="font-bold text-slate-600 dark:text-slate-300">{user.name}</span>
+                        </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
                   <div className="my-5 space-y-3">
                     <label htmlFor="status" className="font-bold">Current status: </label>
                     <select name="status" id="status" onChange={handleChange} className="w-full p-3 bg-white dark:bg-slate-700 rounded-md dark:text-gray-100" defaultValue={data.status}>
@@ -115,6 +120,7 @@ export default function TaskModalDetails() {
                       ))}
                     </select>
                   </div>
+                  <NotePanel/>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
