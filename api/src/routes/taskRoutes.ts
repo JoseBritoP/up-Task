@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { TaskHandler } from "../handlers/tasks";
+import { TaskHandler } from "../handlers/task/tasks";
 
 const taskRouter = Router();
 // Middleware

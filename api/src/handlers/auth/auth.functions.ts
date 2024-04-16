@@ -1,6 +1,6 @@
 import type { Request,Response } from "express";
-import { confirmAccount, createAccount, loginAccount, requestConfirmationCode,forgotPassword, validateToken,getAuthUser } from "../controllers/auth";
-import { updatePassword } from "../controllers/auth/07 - updatePassword";
+import { confirmAccount, createAccount, loginAccount, requestConfirmationCode,forgotPassword, validateToken,getAuthUser } from "../../controllers/auth";
+import { updatePassword } from "../../controllers/auth/07 - updatePassword";
 
 export const GET = async (req:Request,res:Response) => {
   const user = req.user

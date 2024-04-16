@@ -1,6 +1,6 @@
 import type { Request,Response } from "express";
-import { createTask,getTask,getTasks,getTasksInProject,updateTask,deleteTask,updateTaskStatus } from "../controllers/task";
-import { findTeam, addTeam,deleteTeamMember,getTeamMember } from "../controllers/project/team";
+import { createTask,getTask,getTasks,getTasksInProject,updateTask,deleteTask,updateTaskStatus } from "../../controllers/task";
+import { findTeam, addTeam,deleteTeamMember,getTeamMember } from "../../controllers/project/team";
 
 // TODO: Middleware here
 

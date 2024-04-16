@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { ProjectHandler } from "../handlers/Projects";
+import { ProjectHandler } from "../handlers/project/Projects";
 
 export const projectRouter = Router();
 
 // Middlewares
 import { postProjectCheck,putProjectCheck,checkId } from "../middleware/project";
 import { authenticate } from "../middleware/auth";
-import { TeamHandler } from "../handlers/TeamMember";
+import { TeamHandler } from "../handlers/team/TeamMember";
 
 // Endpoints
 

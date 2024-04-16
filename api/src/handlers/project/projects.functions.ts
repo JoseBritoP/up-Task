@@ -1,5 +1,5 @@
 import type { Request,Response } from "express";
-import { createProject,deleteProject,getProject,getProjects, updateProject } from "../controllers/project";
+import { createProject,deleteProject,getProject,getProjects, updateProject } from "../../controllers/project";
 
 export const GET = async (req:Request,res:Response) => {
   const user = req.user;
