@@ -1,5 +1,5 @@
 import type { Request,Response } from "express";
-import { confirmAccount, createAccount, loginAccount, requestConfirmationCode,forgotPassword, validateToken,getAuthUser, updateProfile, updateProfilePassword, checkProfilePassword } from "../../controllers/auth";
+import { confirmAccount, createAccount, loginAccount, requestConfirmationCode,forgotPassword, validateToken,getAuthUser, updateProfile, updateProfilePassword, checkProfilePassword, deleteProfile } from "../../controllers/auth";
 import { updatePassword } from "../../controllers/auth/07 - updatePassword";
 
 export const GET = async (req:Request,res:Response) => {
@@ -138,3 +138,13 @@ export const CHECKPASSWORD = async (req:Request,res:Response) => {
     return res.status(400).json({error:error.message})
   }
 }
+
+export const DELETEACCOUNT = async (req:Request,res:Response) => {
+  const userId = req.user._id;
+  try {
+    const user = await deleteProfile(userId);
+    return res.status(200).json(user)
+  } catch (error:any) {
+    return res.status(400).json({error:error.message})
+  }
+};
