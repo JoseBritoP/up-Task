@@ -17,7 +17,7 @@ export default function NavMenu({user}:NavMenuProps) {
   };
   return (
     <Popover className="relative">
-      <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 p-1 rounded-lg bg-purple-600 dark:bg-purple-800">
+      <Popover.Button aria-label='NavMenuHamburger' className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 p-1 rounded-lg bg-purple-600 dark:bg-purple-800">
         <Bars3Icon className='w-8 h-8 text-white ' />
       </Popover.Button>
 
