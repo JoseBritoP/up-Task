@@ -15,7 +15,7 @@ export default function DashboardView() {
 
   return (
     <>
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl pl-1">
         <h1 className='text-4xl lg:text-5xl font-bold'>My projects</h1>
         <p className=' text-2xl lg:text-3xl font-semibold text-gray-600 dark:text-gray-400 mt-5'>Manage your projects</p>
         <nav className="my-8">
