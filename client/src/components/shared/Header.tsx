@@ -17,7 +17,7 @@ export default function Header({user}:HeaderProps) {
             <Logo/>
           </Link>
         </div>
-        <div className="flex justify-between items-center gap-x-5">
+        <div className="flex justify-between items-center gap-x-5 pr-4">
           <DarkMode/>
           <NavMenu user={user}/>
         </div>
